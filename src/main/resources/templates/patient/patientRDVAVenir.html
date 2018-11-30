@@ -9,13 +9,17 @@
 <body>
 	<section layout:fragment="content">
 		<div class="well" th:each="rendezvous: ${rdvAVenirRDV}">
-			<div th:text="${rendezvous.id}"></div>
 			<div th:text="${rendezvous.Patient.nom}"></div>
 			<div th:text="${rendezvous.Patient.prenom}"></div>
 			<div th:each="creneauxrdv: ${rendezvous.creneaux}">les creneaux
 				<div th:text="${creneauxrdv.id}"></div>
 				<div th:text="${#dates.format(creneauxrdv.debut, 'HH:mm dd/MM/yyyy')}"></div>
 				<div th:text="${#dates.format(creneauxrdv.fin, 'HH:mm dd/MM/yyyy')}"></div>
+				<div th:text="${creneauxrdv.lieu?.nom}"></div>
+				<div th:text="${creneauxrdv.lieu?.adresse?.rue}"></div>
+				<div th:text="${creneauxrdv.lieu?.adresse?.codePostal}"></div>
+				<div th:text="${creneauxrdv.lieu?.adresse?.ville}"></div>
+				<div th:text="${creneauxrdv.lieu?.adresse?.informations}"></div>
 			</div>
 		</div>
 
