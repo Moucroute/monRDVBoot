@@ -14,7 +14,7 @@ public interface IRepositoryPraticien extends JpaRepository<Praticien, Long>{
 	List<Praticien> findByVille(@Param("ville") String ville);
 	
 	
-	@Query("select p from Praticien p left join fetch p.lieux l left join fetch p.creneaux c where l.adresse.ville = :ville order by c.fin desc")
-	List<Praticien> orderByDate();
-	
+//	@Query("select p from Praticien p left join fetch p.lieux l left join fetch p.creneaux c where l.adresse.ville = :ville order by c.fin desc")
+//	List<Praticien> orderB(@Param("ville") String ville);
+//	
 }
