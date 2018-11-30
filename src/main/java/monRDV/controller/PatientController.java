@@ -32,13 +32,13 @@ public class PatientController {
 
 	}
 
-	@GetMapping({ "/", "/list" }) // ETAPE 1
+	@GetMapping({ "/", "/mesInfosPatient" }) // ETAPE 1
 	public String list(Model model) {
 		List<Patient> patients = repoPatient.findAll(); // ETAPE 2
 
 		model.addAttribute("page", "patient");
 		model.addAttribute("mesPatients", patients); // ETAPE 3
-		return "patient/patients"; // ETAPE 4
+		return "patient/mesInfosPatient"; // ETAPE 4
 	}
 
 	@GetMapping("/add")
@@ -46,29 +46,44 @@ public class PatientController {
 		model.addAttribute("page", "patient");
 		model.addAttribute("patient", new Patient());
 		
-		return "patient/patientEdit";
+		return "patient/mesInfosPatient";
 	}
 
 	@GetMapping("/inscription")
 	public String inscription(Model model) {
+		
 //		model.addAttribute("page", "patient");
-//		model.addAttribute("patient", new Patient());
+		model.addAttribute("patient", new Patient());
 		
 		return "patient/inscriptionPatient";
 	}
 	
-	@GetMapping("/edit")
-	public String edit(@RequestParam Long id, Model model) {
-		model.addAttribute("page", "praticien");
+//	@GetMapping("/edit")
+//	public String edit(@RequestParam Long id, Model model) {
+//		model.addAttribute("page", "patient");
+//		Optional<Patient> opt = repoPatient.findById(id);
+//		if (opt.isPresent()) {
+//			model.addAttribute("patient", opt.get());
+//		} else {
+//			model.addAttribute("patient", new Patient());
+//		}
+//
+//		return "patient/mesInfosPatient";
+//	}
+	
+	@GetMapping("/editMesInfosPatient")
+	public String editInfosPatients(@RequestParam Long id, Model model) {
+		model.addAttribute("page", "patient");
 		Optional<Patient> opt = repoPatient.findById(id);
 		if (opt.isPresent()) {
-			model.addAttribute("eleve", opt.get());
+			model.addAttribute("patient", opt.get());
 		} else {
-			model.addAttribute("eleve", new Patient());
+			model.addAttribute("patient", new Patient());
 		}
 
-		return "patient/patientEdit";
+		return "patient/mesInfosPatient";
 	}
+	
 
 	@PostMapping("/save")
 	public String save(@ModelAttribute("eleve") @Valid Patient patient, BindingResult result, Model model) {
@@ -77,7 +92,7 @@ public class PatientController {
 			model.addAttribute("page", "patient");
 			model.addAttribute("patients", repoPatient.findAll());
 
-			return "eleve/eleveEdit";
+			return "patient/mesInfosPatient";
 		}
 
 		repoPatient.save(patient);
