@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout.html">
+	layout:decorator="layoutPraticien.html">
 <head>
 <meta charset="UTF-8">
-<title>Edition des Matières</title>
+<title>Inscription des praticiens</title>
 </head>
 <body>
 	<section layout:fragment="content">
-		<h2>Edition des Matières</h2>
-		<form th:action="@{/matiere/save}" method="post">
-			<div class="form-group">
+		<h2>Formulaire d'inscription Praticien</h2>
+		
+		<form th:action="@{/praticien/inscription/save}" method="post">
+		
+			<div class="form-group"> 
 				<label for="nom">Nom:</label> <input type="text"
-					class="form-control" id="nom" placeholder="Entrer un nom"
-					name="nom" th:value="${matiere.nom}">
-				<div th:errors="${matiere.nom}" class="alert alert-danger"></div>
+					class="form-control" id="nom" placeholder="Nom"
+					name="nom" th:value="${praticien.nom}">
+			</div>
+			
+			<div class="form-group"> 
+				<label for="prenom">Prénom:</label> <input type="text"
+					class="form-control" id="prenom" placeholder="Prénom"
+					name="prenom" th:value="${praticien.prenom}">
+			</div>
+			
+			<div class="form-group"> 
+				<label for="telephone">Numéro de téléphone:</label> <input type="text"
+					class="form-control" id="telephone" placeholder="Téléphone"
+					name="telephone" th:value="${praticien.utilisateur?.telephone}">
 			</div>
 
+			
 			<div class="form-group">
-				<label for="duree">Durée:</label> <input type="number"
-					class="form-control" id="duree" placeholder="Entrer une duree"
-					name="duree" th:value="${matiere.duree}">
-			</div>
-			<div class="form-group">
-				<label for="niveau">Niveau:</label> <select id="niveau"
-					name="niveau" class="form-control">
-					<option th:each="niveau : ${niveaux}" th:value="${niveau}"
+				<label for="prendCarteVitale"></label> <select id="prendCarteVitale"
+					name="prendCarteVitale" class="form-control">
+					<option th:each="prendCarteVitale : ${prendCarteVitales}" th:value="${prendCarteVitale}"
 						th:text="${niveau.label}"
 						th:selected="${matiere.niveau == niveau}"></option>
 				</select>
 			</div>
+
 
 			<button type="submit" class="btn btn-success btn-lg">
 				<span class="glyphicon glyphicon-ok"></span>
