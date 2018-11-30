@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layoutHome.html">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<section layout:fragment="content">
+		<img src="img/home.jpg" class="img-rounded" alt="" width="400"
+			height="200">
+			Bienvenue sur MonRDV !
+			Le site qui vous simplifie la vie
+<!-- 		<h5></h5> -->
+		<h5></h5>
 
+
+
+		<div class="container">
+			<form action="/action_page.php">
+				<div class="form-group">
+					<label for="nom">Nom du praticien:</label> <input type="text"
+						class="form-control" id="nom" placeholder="nom de mon praticien"
+						name="email">
+				</div>
+				<div class="form-group">
+					<label for="ville">Entrer une ville:</label> <input type="text"
+						class="form-control" id="ville" placeholder="ville de mon praticien"
+						name="ville">
+				</div>
+				
+				<div class="form-group">
+				<label for="specialite">Specialité recherchée:</label> <select id="specialite"
+					name="specialite" class="form-control">
+					<option th:each="specialite : ${specialites}" th:value="${specialite}"
+						th:text="${specialite.libelle}"
+						th:selected="${specialite.libelle == specialite}"></option>
+				</select>
+				
+					</div>
+				
+				
+				<button type="submit" class="btn btn-default">Rechercher</button>
+			</form>
+	
+
+</div>
+
+
+
+	</section>
 </body>
 </html>
