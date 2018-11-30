@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import monRDV.model.InscriptionFormPatient;
 import monRDV.model.Patient;
+import monRDV.model.Profil;
 import monRDV.model.Utilisateur;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryUtilisateur;
@@ -28,6 +29,7 @@ import monRDV.repository.IRepositoryUtilisateur;
 public class PatientController {
 	@Autowired
 	private IRepositoryPatient repoPatient;
+	@Autowired
 	private IRepositoryUtilisateur repoUtilisateur;
 
 	public PatientController() {
@@ -60,7 +62,7 @@ public class PatientController {
 		return "patient/inscriptionPatient";
 	}
 
-	@GetMapping("/save")
+	@RequestMapping("/save")
 	public String save(@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
 			BindingResult result, Model model) {
 
@@ -69,13 +71,19 @@ public class PatientController {
 		Patient nouveauPatient = new Patient();
 		nouveauPatient.setNom(inscriptionFormPatient.getNom());
 		nouveauPatient.setPrenom(inscriptionFormPatient.getPrenom());
-//		nouveauPatient.setDateNaissance(inscriptionFormPatient.getPrenom());
 		nouveauPatient.setDateCreation(new Date());
 		nouveauPatient.setDefaut(true);
-
-//		Utilisateur nouvelUtilisateur = new Utilisateur();
-//		nouvelUtilisateur.setTelephone(inscriptionFormPatient.getTelephone());
+		
+		Utilisateur nouvelUtilisateur = new Utilisateur();
+		nouvelUtilisateur.setTelephone(inscriptionFormPatient.getTelephone());
+		nouvelUtilisateur.setProfil(Profil.Patient);
+		nouvelUtilisateur.setDateCreation(new Date());
+		nouvelUtilisateur.setEmail(inscriptionFormPatient.getEmail());
+		nouvelUtilisateur.setMotDePasse(inscriptionFormPatient.getMotDePasse());
+		
 		repoPatient.save(nouveauPatient);
+		System.out.println("mon test utilisateur" + nouvelUtilisateur.getEmail());
+		repoUtilisateur.save(nouvelUtilisateur);
 
 		return "patient/inscriptionPatient";
 	}
@@ -117,21 +125,21 @@ public class PatientController {
 
 		return "patient/mesInfosPatient";
 	}
-
-	@PostMapping("/save")
-	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
-
-		if (result.hasErrors()) {
-			model.addAttribute("page", "patient");
-			model.addAttribute("patients", repoPatient.findAll());
-
-			return "patient/mesInfosPatient";
-		}
-
-		repoPatient.save(patient);
-
-		return "redirect:list";
-	}
+//
+//	@PostMapping("/save")
+//	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
+//
+//		if (result.hasErrors()) {
+//			model.addAttribute("page", "patient");
+//			model.addAttribute("patients", repoPatient.findAll());
+//
+//			return "patient/mesInfosPatient";
+//		}
+//
+//		repoPatient.save(patient);
+//
+//		return "redirect:list";
+//	}
 
 	@GetMapping("/delete")
 	public String delete(@RequestParam Long id) {
