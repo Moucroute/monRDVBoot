@@ -16,6 +16,13 @@
 					height="200"><br><br>
 				<button type="submit" class="btn btn-default">Se connecter</button><br>
 			</div>
+			<div class="form-group">
+				<label for="lieu">Entrer une ville:</label> <select
+					id="ville" name="ville" class="form-control">
+					<option th:each="lieu : ${lieux}" th:value="${lieu.adresse?.ville}"
+						th:text="${lieu.adresse?.ville}"
+						th:selected="${lieu.adresse?.ville == ville}"></option>
+				</select>
 		
 			<div class="col-sm-8">
 				<h2>Bienvenue sur MonRDV ! Le site qui vous simplifie la vie</h2>
