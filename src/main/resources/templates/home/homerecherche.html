@@ -9,40 +9,10 @@
 <body>
 	<section layout:fragment="content">
 
-<!-- 		<table class="table table-striped"> -->
-<!-- 			<thead> -->
-<!-- 				<tr> -->
-<!-- 					<th>Nom</th> -->
-<!-- 					<th>Prénom</th> -->
-<!-- 					<th>Spécialités</th> -->
-<!-- 					<th>Prochain RDV</th> -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-<!-- 				<tr th:each="eleve : ${mesEleves}"> -->
-<!-- 					<td th:text="${eleve.id}"></td> -->
-<!-- 					<td>[[${eleve.nom}]]</td> -->
-<!-- 					<td>[[${eleve.prenom}]]</td> -->
-<!-- 					<td>[[${#dates.format(eleve.dtNaissance, 'dd/MM/yyyy')}]]</td> -->
-<!-- 					<td>[[${eleve.adresse?.rue}]]</td> -->
-<!-- 					<td>[[${eleve.adresse?.codePostal}]]</td> -->
-<!-- 					<td>[[${eleve.adresse?.ville}]]</td> -->
-<!-- 					<td th:text="${eleve.note}"></td> -->
-<!-- 					<td th:text="${eleve.diplome?.label}"></td> -->
-<!-- 					<td><a th:href="@{/eleve/edit(id=${eleve.id})}" -->
-<!-- 						class="btn btn-info btn-xs"><span -->
-<!-- 							class="glyphicon glyphicon-pencil"></span></a><a -->
-<!-- 						th:href="@{/eleve/delete(id=${eleve.id})}" -->
-<!-- 						class="btn btn-danger btn-xs"><span -->
-<!-- 							class="glyphicon glyphicon-trash"></span></a></td> -->
-<!-- 				</tr> -->
-<!-- 			</tbody> -->
-<!-- 		</table> -->
 
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
 				<div th:each="praticien : ${mesPraticiens}" class="thumbnail">
-					<img src="..." alt="...">
 					<div class="caption">
 						<h3>
 							<font style="text-transform: uppercase;">[[${praticien.nom}]]</font>
@@ -52,8 +22,12 @@
 							<li>>[[${specialite}]]</li>
 						</ul>
 						<p>Prochain rendez-vous le</p>
+						<p th:if="${praticien.prendCarteVitale}">Prends la carte
+							vitale</p>
+						<p th:unless="${praticien.prendCarteVitale}">Ne prends pas la
+							carte vitale</p>
 						<p>
-							<a href="#" class="btn btn-primary" role="button">Choisir</a> 
+							<a href="#" class="btn btn-primary" role="button">Choisir</a>
 						</p>
 					</div>
 				</div>
