@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import monRDV.model.Praticien;
 import monRDV.repository.IRepositoryPraticien;
@@ -31,6 +32,25 @@ public class HomeControlerRecherche {
 		model.addAttribute("mesPraticiens", praticiens); // ETAPE 3
 
 		return "home/homerecherche"; // ETAPE 4
+	}
+	
+	@GetMapping({"/sort"}) // ETAPE 1
+	public String sort(Model model, @RequestParam String by) { 
+		
+		if (by == "price") {
+			List<Praticien> praticiens = repoPraticien.findAll();
+			
+		}
+		else if (by == "place") {
+			List<Praticien> praticiens = repoPraticien.findAll();
+			
+		}
+		else if (by == "dispo") {
+			List<Praticien> praticiens = repoPraticien.findAll();
+			
+		}
+
+
 	}
 
 }
