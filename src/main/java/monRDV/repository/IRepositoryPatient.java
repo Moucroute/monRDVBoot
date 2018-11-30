@@ -10,7 +10,7 @@ import monRDV.model.Patient;
 
 public interface IRepositoryPatient extends JpaRepository<Patient, Long>{
 
-	@Query("select p from Patient p left join fetch p.utilisateur where p.id = :id")
+	@Query("select p from Patient p join p.utilisateur u where u.id = :id")
 	List<Patient> findByUtilisateur(@Param("id") Long identifiantUtilisateur);
 
 }

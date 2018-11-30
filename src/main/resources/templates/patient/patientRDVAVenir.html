@@ -8,10 +8,12 @@
 </head>
 <body>
 	<section layout:fragment="content">
-	
-	<div th:text="${rdvAVenirPatients?.nom}"></div>
-<!-- 	<div th:text="${rdvAVenirPatients.prenom}"></div> -->
-	
+		<div th:each="patients :${rdvAVenirPatients} ">
+			<div class="well" th:text="${patients.nom}"></div>
+			<div class="well" th:text="${patients.prenom}"></div>
+		</div>
+			
+
 	</section>
 </body>
 </html>
