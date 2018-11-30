@@ -14,13 +14,17 @@ import java.util.List;
 @Entity
 @Table(name = "specialite")
 public class Specialite {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@Version
 	private int version;
+	
 	@Column(name = "libelle", length = 100)
 	private String libelle;
+	
 	@ManyToMany(mappedBy = "specialites")
 	private List<Praticien> praticiens = new ArrayList<>();
 

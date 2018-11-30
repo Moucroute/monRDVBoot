@@ -11,13 +11,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "utilisateur")
@@ -29,8 +30,11 @@ public class Utilisateur {
 
 	@Version
 	private int version;
+	
 	@Column(name = "email")
+	@UniqueElements // TODO : faire valider l'annotation par Eric et Jérome
 	private String email;
+	
 	@Column(name = "telephone")
 	private String telephone;
 
