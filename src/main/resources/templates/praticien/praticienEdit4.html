@@ -14,14 +14,12 @@
 			<div class="col-lg-1"></div>
 			<div class="col-lg-5">
 
-				<h3>Spécialités Enregistrées :</h3>
-				<br>
 				<div>
 
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Spécialités</th>
+								<th>Liste des spécialités enregistrées</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -30,7 +28,7 @@
 								<td>[[${specialite.libelle}]]</td>
 
 								<td><a
-									th:href="@{/praticien/deleteSpecialite(specialiteId=${specialite.id},utilisateurId=${utilisateurId})}"
+									th:href="@{/praticien/deleteSpecialite(id=${specialite.id})}"
 									class="btn btn-danger btn-xs"><span
 										class="glyphicon glyphicon-trash"></span></a></td>
 							</tr>
@@ -39,29 +37,22 @@
 
 				</div>
 
-
-			</div>
-
-			<div class="col-lg-5">
-
-				<h3>Ajouter une spécialité existante :</h3>
-				<br>
 				<div th:each="specialite : ${allSpecialites}">
-
 					<input type="checkbox" id="specialite" name="specialite.id">
 					<label for="specialitesExistantes">[[${specialite.libelle}]]</label>
-
 				</div>
-
-				<a th:href="@{/specialite/add}" class="btn btn-success btn-lg"><span
-					class="glyphicon glyphicon-plus"></span></a>
 
 			</div>
 
-			<div class="col-lg-1"></div>
+			<div class="col-lg-6">
+			
+			
+			</div>
+
 
 		</div>
 
+		<div class="row"></div>
 
 	</section>
 </body>
