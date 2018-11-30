@@ -49,6 +49,14 @@ public class PatientController {
 		return "patient/patientEdit";
 	}
 
+	@GetMapping("/inscription")
+	public String inscription(Model model) {
+//		model.addAttribute("page", "patient");
+//		model.addAttribute("patient", new Patient());
+		
+		return "patient/inscriptionPatient";
+	}
+	
 	@GetMapping("/edit")
 	public String edit(@RequestParam Long id, Model model) {
 		model.addAttribute("page", "patient");
