@@ -1,0 +1,83 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition de l'élève</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<h2>Edition de l'élève</h2>
+		<form th:action="@{/eleve/save}" method="post">
+			<input type="hidden" name="id" th:value="${eleve.id}">
+			<div class="form-group">
+				<label for="nom">Nom:</label> <input type="text"
+					class="form-control" id="nom" placeholder="Entrer un nom"
+					name="nom" th:value="${eleve.nom}">
+				<div th:errors="${eleve.nom}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="prenom">Prénom:</label> <input type="text"
+					class="form-control" id="prenom" placeholder="Entrer un prénom"
+					name="prenom" th:value="${eleve.prenom}">
+				<div th:errors="${eleve.prenom}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="dtNaissance">Date de naissance:</label> <input
+					type="date" class="form-control" id="dtNaissance"
+					placeholder="Entrer une date de naissance" name="dtNaissance"
+					th:value="${#dates.format(eleve.dtNaissance,'yyyy-MM-dd')}">
+				<div th:errors="${eleve.dtNaissance}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="rue">Rue:</label> <input type="text"
+					class="form-control" id="rue" placeholder="Entrer une rue"
+					name="adresse.rue" th:value="${eleve.adresse?.rue}">
+				<div th:errors="${eleve.adresse.rue}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="codePostal">Code postal:</label> <input type="text"
+					class="form-control" id="codePostal"
+					placeholder="Entrer un code postal" name="adresse.codePostal"
+					th:value="${eleve.adresse?.codePostal}">
+				<div th:errors="${eleve.adresse.codePostal}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="ville">Ville:</label> <input type="text"
+					class="form-control" id="ville" placeholder="Entrer une ville"
+					name="adresse.ville" th:value="${eleve.adresse?.ville}">
+				<div th:errors="${eleve.adresse.ville}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="note">Note:</label> <input type="number"
+					class="form-control" id="note" placeholder="Entrer une note"
+					name="note" th:value="${eleve.note}">
+				<div th:errors="${eleve.note}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="diplome">Diplôme:</label> <select id="diplome"
+					name="diplome" class="form-control">
+					<option th:each="diplome : ${diplomes}" th:value="${diplome}"
+						th:text="${diplome.label}"
+						th:selected="${eleve.diplome == diplome}"></option>
+				</select>
+				<div th:errors="${eleve.diplome}" class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="salle">Salle:</label> <select id="salle" name="salle.id"
+					class="form-control">
+					<option>Veuillez renseigner</option>
+					<option th:each="salle : ${salles}" th:value="${salle.id}"
+						th:text="${salle.nom}"
+						th:selected="${eleve.salle?.id == salle.id}"></option>
+				</select>
+				<div th:errors="${eleve.salle}" class="alert alert-danger"></div>
+			</div>
+			<button type="submit" class="btn btn-success btn-lg">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+		</form>
+	</section>
+</body>
+</html> -->

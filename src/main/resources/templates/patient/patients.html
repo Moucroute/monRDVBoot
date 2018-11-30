@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Liste des élèves</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Identifiant</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Date de naissance</th>
+					<th>Rue</th>
+					<th>Code postal</th>
+					<th>Ville</th>
+					<th>Note</th>
+					<th>Diplôme</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="eleve : ${mesEleves}">
+					<td th:text="${eleve.id}"></td>
+					<td>[[${eleve.nom}]]</td>
+					<td>[[${eleve.prenom}]]</td>
+					<td>[[${#dates.format(eleve.dtNaissance, 'dd/MM/yyyy')}]]</td>
+					<td>[[${eleve.adresse?.rue}]]</td>
+					<td>[[${eleve.adresse?.codePostal}]]</td>
+					<td>[[${eleve.adresse?.ville}]]</td>
+					<td th:text="${eleve.note}"></td>
+					<td th:text="${eleve.diplome?.label}"></td>
+					<td><a th:href="@{/eleve/edit(id=${eleve.id})}"
+						class="btn btn-info btn-xs"><span
+							class="glyphicon glyphicon-pencil"></span></a><a
+						th:href="@{/eleve/delete(id=${eleve.id})}"
+						class="btn btn-danger btn-xs"><span
+							class="glyphicon glyphicon-trash"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/eleve/add}" class="btn btn-success btn-lg"><span
+			class="glyphicon glyphicon-plus"></span></a>
+	</section>
+</body>
+</html> -->
