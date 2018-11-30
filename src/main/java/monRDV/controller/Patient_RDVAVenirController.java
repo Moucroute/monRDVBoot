@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import monRDV.model.CreneauDisponible;
 import monRDV.model.Patient;
 import monRDV.model.RendezVous;
 import monRDV.model.Utilisateur;
+import monRDV.repository.IRepositoryCreneauDisponible;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryRendezVous;
 import monRDV.repository.IRepositoryUtilisateur;
@@ -29,6 +31,9 @@ public class Patient_RDVAVenirController {
 
 	@Autowired
 	private IRepositoryRendezVous repoRendezVous;
+	@Autowired
+	
+	private IRepositoryCreneauDisponible repoCreneauDisponible;
 
 	public Patient_RDVAVenirController() {
 		super();
@@ -43,19 +48,21 @@ public class Patient_RDVAVenirController {
 
 	@GetMapping({ "/yo", "/rdvAVenir" }) // ETAPE 1
 	public String list(@RequestParam Long id, Model model) {
-		Optional<Utilisateur> optUtilisateur = repoUtilisateur.findById(id);
-
-		if (optUtilisateur.isPresent()) {
-			Utilisateur utilisateur = optUtilisateur.get();
-		}
-		List<Patient> patients = repoPatient.findByUtilisateur(id);
-		List<RendezVous> rendezvouss = repoRendezVous.findByUtilisateur(id);
-
 		
-//		model.addAttribute("page", "eleve");
-
+		List<RendezVous> rendezvouss = repoRendezVous.findByUtilisateur(id);
 		model.addAttribute("rdvAVenirRDV", rendezvouss);
-		model.addAttribute("rdvAVenirPatients", patients); // ETAPE 3
+		
+		List<CreneauDisponible> creneaux = repoCreneauDisponible.findByUtilisateur(id);
+		model.addAttribute("rdvAVenirCreneaux", creneaux);
+		
+		
+//		Optional<Utilisateur> optUtilisateur = repoUtilisateur.findById(id);
+//		if (optUtilisateur.isPresent()) {
+//			Utilisateur utilisateur = optUtilisateur.get();
+//		}
+//		List<Patient> patients = repoPatient.findByUtilisateur(id);
+//		model.addAttribute("page", "eleve");
+//		model.addAttribute("rdvAVenirPatients", patients); // ETAPE 3
 
 		return "patient/patientRDVAVenir"; // ETAPE 4
 	}
