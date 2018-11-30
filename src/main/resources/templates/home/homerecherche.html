@@ -30,7 +30,7 @@
 							[[${praticien.prenom}]]
 						</h3>
 						<ul th:each="specialite : ${praticien.specialites}">
-							<li>>[[${specialite}]]</li>
+							<li>>[[${specialite.libelle}]]</li>
 						</ul>
 						<p>Prochain rendez-vous le</p>
 						<p th:if="${praticien.prendCarteVitale}">Prends la carte
