@@ -94,7 +94,7 @@ public class PatientController {
 //	}
 
 	@GetMapping("/editMesInfosPatient")
-	public String editInfosPatients(@RequestParam Long id, Model model) {
+	public String findWithPatients(@RequestParam Long id, Model model) {
 		List<Patient> patientsUt = new ArrayList<Patient>();
 
 		model.addAttribute("page", "patient");

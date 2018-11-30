@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layoutPatient.html">
+<head>
+<meta charset="UTF-8">
+<title>Données du patient</title>
+</head>
+<body>
+
+	<section layout:fragment="content">
+
+		<div class="row">
+			<div class="col-sm-6" style="background-color: lavender;">
+				<h2>Données de l'utilisateur</h2>
+				<form th:action="@{/patient/save}" method="post">
+					<input type="hidden" name="id" th:value="${utilisateur.id}">
+
+					<div class="form-group">
+						<label for="nom">Nom:</label> <input type="text"
+							class="form-control" id="nom" placeholder="Entrer un nom"
+							name="nom" th:value="${patient.nom}">
+
+
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom:</label> <input type="text"
+							class="form-control" id="prenom" placeholder="Entrer un prénom"
+							name="prenom" th:value="${patient.prenom}">
+
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="email" placeholder="Entrer un email"
+							name="email" th:value="${utilisateur?.email}">
+
+					</div>
+					<div class="form-group">
+						<label for="motDePasse">Mot de passe:</label> <input type="password"
+							class="form-control" id="motDePasse"
+							placeholder="Entrer un mot de passe" name="motDePasse"
+							th:value="${utilisateur.motDePasse}">
+
+
+					</div>
+					<div class="form-group">
+						<label for="telephone">Numéro de téléphone:</label> <input
+							type="text" class="form-control" id="telephone"
+							placeholder="Entrer un numéro de téléphone" name="telephone"
+							th:value="${utilisateur.telephone}">
+
+
+					</div>
+					<button type="submit" class="btn btn-success btn-lg">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+
+				</form>
+			</div>
+
+
+
+			<div class="col-sm-6" style="background-color: lavenderblush;">
+				<h2>Mes patients</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Date de naissance</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="patient : ${patientsUt}">
+
+							<td>[[${patient.nom}]]</td>
+							<td>[[${patient.prenom}]]</td>
+							<td>[[${#dates.format(patient.dtNaissance, 'dd/MM/yyyy')}]]</td>
+							<td><a
+								th:href="@{/patient/editMesInfosPatient(id=${patient.id})}"
+								class="btn btn-info btn-xs"><span
+									class="glyphicon glyphicon-pencil"></span></a><a
+								th:href="@{/patient/delete(id=${patient.id})}"
+								class="btn btn-danger btn-xs"><span
+									class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+
+
+</body>
+</html>
