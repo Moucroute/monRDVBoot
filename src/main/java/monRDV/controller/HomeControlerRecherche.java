@@ -1,8 +1,10 @@
 package monRDV.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +48,30 @@ public class HomeControlerRecherche {
 		return "home/homerecherche"; 
 	}
 	
+	@PostMapping("/listBySpecialite")
+	public String listBySpecialite(Model model, @RequestParam("specialite") String libelle) { 
+		
+		List<Praticien> praticiens = repoPraticien.findBySpecialite(libelle);
+		model.addAttribute("libelle", libelle);
+		model.addAttribute("page", "accueil");
+		model.addAttribute("mesPraticiens", praticiens); 
+
+		return "home/homerecherche"; 
+	}
+	
+//	@PostMapping("/listByVilleSpecialite")
+//	public String listByVilleSpecialite(Model model, @RequestParam String ville, @RequestParam String libelle) { 
+//		
+//		List<Praticien> praticiens = repoPraticien.findBySpecialite(libelle);
+//		model.addAttribute("libelle", libelle);
+//		model.addAttribute("ville", ville);
+//		model.addAttribute("page", "accueil");
+//		model.addAttribute("mesPraticiens", praticiens); 
+//
+//		return "home/homerecherche"; 
+//	}
+	
+
 //	@PostMapping("/sortByDate")
 //	public String sortByDate(Model model) { 
 //		
