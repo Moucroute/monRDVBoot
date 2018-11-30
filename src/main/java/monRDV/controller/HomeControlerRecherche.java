@@ -34,23 +34,33 @@ public class HomeControlerRecherche {
 		return "home/homerecherche"; // ETAPE 4
 	}
 	
-	@GetMapping({"/sort"}) // ETAPE 1
-	public String sort(Model model, @RequestParam String by) { 
-		
-		if (by == "price") {
-			List<Praticien> praticiens = repoPraticien.findAll();
-			
-		}
-		else if (by == "place") {
-			List<Praticien> praticiens = repoPraticien.findAll();
-			
-		}
-		else if (by == "dispo") {
-			List<Praticien> praticiens = repoPraticien.findAll();
-			
-		}
 
+	public String listByVille(Model model, @RequestParam String ville) { 
+		List<Praticien> praticiens = repoPraticien.findByVille(ville); 
 
+		model.addAttribute("page", "accueil");
+		model.addAttribute("mesPraticiens", praticiens); 
+
+		return "home/homerecherche"; 
 	}
+	
+//	@GetMapping({"/sort"}) // ETAPE 1
+//	public String sort(Model model, @RequestParam String by) { 
+//		
+//		if (by == "price") {
+//			List<Praticien> praticiens = repoPraticien.findAll();
+//			
+//		}
+//		else if (by == "place") {
+//			List<Praticien> praticiens = repoPraticien.findAll();
+//			
+//		}
+//		else if (by == "dispo") {
+//			List<Praticien> praticiens = repoPraticien.findAll();
+//			
+//		}
+//
+//
+//	}
 
 }

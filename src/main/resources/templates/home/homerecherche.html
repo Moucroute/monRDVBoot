@@ -32,7 +32,7 @@
 						<ul th:each="specialite : ${praticien.specialites}">
 							<li>>[[${specialite}]]</li>
 						</ul>
-						<p>Prochain rendez-vous le</p>
+						<p>Prochain rendez-vous le [[${#dates.format(praticien.creneaux., 'dd/MM/yyyy')}]]</p>
 						<p th:if="${praticien.prendCarteVitale}">Prends la carte
 							vitale</p>
 						<p th:unless="${praticien.prendCarteVitale}">Ne prends pas la
