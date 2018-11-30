@@ -9,43 +9,49 @@
 <body>
 	<section layout:fragment="content">
 		<img src="img/home.jpg" class="img-rounded" alt="" width="400"
-			height="200">
-			Bienvenue sur MonRDV !
-			Le site qui vous simplifie la vie
-<!-- 		<h5></h5> -->
+			height="200"> Bienvenue sur MonRDV ! Le site qui vous simplifie
+		la vie
+		<!-- 		<h5></h5> -->
 		<h5></h5>
 
 
+		<form th:action="" @{/homerecherche/findByVille(ville=ville)}
+			" method="post">
 
-		<div class="container">
-			<form action="/action_page.php">
-				<div class="form-group">
-					<label for="nom">Nom du praticien:</label> <input type="text"
-						class="form-control" id="nom" placeholder="nom de mon praticien"
-						name="email">
-				</div>
-				<div class="form-group">
-					<label for="ville">Entrer une ville:</label> <input type="text"
-						class="form-control" id="ville" placeholder="ville de mon praticien"
-						name="ville">
-				</div>
-				
-				<div class="form-group">
-				<label for="specialite">Specialité recherchée:</label> <select id="specialite"
-					name="specialite" class="form-control">
-					<option th:each="specialite : ${specialites}" th:value="${specialite}"
-						th:text="${specialite.libelle}"
+
+
+			<div class="form-group">
+				<label for="nom">Nom du praticien:</label> <input type="text"
+					class="form-control" id="nom" placeholder="nom de mon praticien"
+					name="email">
+			</div>
+			<div class="form-group">
+				<label for="lieu">Entrer une ville:</label> <select
+					id="lieu.adresse?.ville" name="ville" class="form-control">
+					<option th:each="lieu : ${lieux}" th:value="${lieu}"
+						th:text="${lieu.adresse?.ville}"
+						th:selected="${lieu.adresse?.ville == ville}"></option>
+				</select>
+
+
+
+			</div>
+
+			<div class="form-group">
+				<label for="specialite">Specialité recherchée:</label> <select
+					id="specialite" name="specialite" class="form-control">
+					<option th:each="specialite : ${specialites}"
+						th:value="${specialite}" th:text="${specialite.libelle}"
 						th:selected="${specialite.libelle == specialite}"></option>
 				</select>
-				
-					</div>
-				
-				
-				<button type="submit" class="btn btn-default">Rechercher</button>
-			</form>
-	
 
-</div>
+			</div>
+
+
+			<button type="submit" class="btn btn-default">Rechercher</button>
+
+		</form>
+
 
 
 
