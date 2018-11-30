@@ -54,7 +54,7 @@ public class PatientController {
 //		model.addAttribute("page", "patient");
 //		model.addAttribute("patient", new Patient());
 		
-		return "patient/praticienInscription";
+		return "patient/inscriptionPatient";
 	}
 	
 	@GetMapping("/edit")
