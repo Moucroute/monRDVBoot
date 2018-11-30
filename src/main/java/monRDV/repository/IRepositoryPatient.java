@@ -8,9 +8,16 @@ import org.springframework.data.repository.query.Param;
 
 import monRDV.model.Patient;
 
-public interface IRepositoryPatient extends JpaRepository<Patient, Long>{
+public interface IRepositoryPatient extends JpaRepository<Patient, Long> {
 
-	@Query("select p from Patient p join p.utilisateur u where u.id = :id")
+	@Query("select p from Patient p join p.Utilisateur u where u.id = :id")
 	List<Patient> findByUtilisateur(@Param("id") Long identifiantUtilisateur);
+
+//	@Query("select p from Patient p join p.RendezVous rdv where rdv.id = :id")
+//	Patient findByRdv(@Param("id") Long identifiantRdv);
+	
+//	@Query("select p from Patient p join p.RendezVous prdv join  where rdv.id = :id")
+//	List<Patient> findViaRdvByUtilisateur(@Param("id") Long identifiantUtilisateur);
+
 
 }

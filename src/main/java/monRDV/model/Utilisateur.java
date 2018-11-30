@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "Utilisateur")
 public class Utilisateur {
 
 	@Id

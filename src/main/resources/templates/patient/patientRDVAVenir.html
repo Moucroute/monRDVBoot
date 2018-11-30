@@ -8,11 +8,14 @@
 </head>
 <body>
 	<section layout:fragment="content">
-		<div th:each="patients :${rdvAVenirPatients} ">
-			<div class="well" th:text="${patients.nom}"></div>
-			<div class="well" th:text="${patients.prenom}"></div>
+		<div class="well" th:each="rendez-vous: ${rdvAVenirRDV}">
+			<div th:each="patients :${rdvAVenirPatients} ">
+				<div th:each="rdv: ${rdvAVenirRDV}">
+					<div th:text="${rdv.Patient.prenom}"></div>
+				</div>
+			</div>
 		</div>
-			
+
 
 	</section>
 </body>
