@@ -13,7 +13,10 @@ public interface IRepositoryRendezVous extends JpaRepository<RendezVous, Long> {
 
 	@Query("select rdv from RendezVous rdv join rdv.utilisateur u where u.id = :id")
 	List<RendezVous> findByUtilisateur(@Param("id") Long identifiantUtilisateur);
+		
+	@Query("select r from RendezVous r where r.modalite.id =: id")
+	List<RendezVous> findModaliteWithMotif (@Param("id") Long id);
 	
-	
-	
+	@Query("select r from RendezVous r left join fetch r.creneaux c")
+	List<RendezVous> findAllWithCreneaux ();
 }

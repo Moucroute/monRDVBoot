@@ -23,6 +23,8 @@ public class RendezVous {
 
 	@Version
 	private int version;
+	
+	private Boolean statut;
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
@@ -98,5 +100,15 @@ public class RendezVous {
 	public void setRendezVous(List<CreneauDisponible> creneaux) {
 		this.creneaux = creneaux;
 	}
+
+	public Boolean getStatut() {
+		return statut;
+	}
+
+	public void setStatut(Boolean statut) {
+		this.statut = statut;
+	}
+
+
 
 }
