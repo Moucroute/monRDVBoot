@@ -7,27 +7,25 @@
 <title>Inscription</title>
 </head>
 <body>
-<section layout:fragment="content">
-<!-- 	<h2>Inscription</h2> -->
-	<form th:action="@{/patient/save}" method="post">
-			<input type="hidden" name="id" th:value="${patient.id}">
+	<section layout:fragment="content">
+		<!-- 	<h2>Inscription</h2> -->
+		<form th:action="@{/patient/save}" method="post">
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
 					class="form-control" id="nom" placeholder="Entrer un nom"
-					name="nom" th:value="${patient.nom}">
-				<div th:errors="${patient.nom}" class="alert alert-danger"></div>
+					name="nom" th:value="${inscriptionFormPatient.nom}">
 			</div>
 			<div class="form-group">
-				<label for="nom">Nom:</label> <input type="text"
-					class="form-control" id="nom" placeholder="Entrer un nom"
-					name="nom" th:value="${patient.nom}">
-				<div th:errors="${patient.nom}" class="alert alert-danger"></div>
+				<label for="prenom">Prenom:</label> <input type="text"
+					class="form-control" id="prenom" placeholder="Entrer un prenom"
+					name="prenom" th:value="${inscriptionFormPatient.prenom}">
 			</div>
 
-		<button type="submit" class="btn btn-success btn-lg">
+
+			<button type="submit" class="btn btn-success btn-lg">
 				<span class="glyphicon glyphicon-ok"></span>
 			</button>
-		</form> 
-</section>
+		</form>
+	</section>
 </body>
 </html>

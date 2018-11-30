@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import monRDV.model.InscriptionFormPatient;
 import monRDV.model.Patient;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryUtilisateur;
-
 
 @Controller
 @RequestMapping("/patient")
@@ -45,19 +45,31 @@ public class PatientController {
 	public String add(Model model) {
 		model.addAttribute("page", "patient");
 		model.addAttribute("patient", new Patient());
-		
+
 		return "patient/mesInfosPatient";
 	}
 
 	@GetMapping("/inscription")
-	public String inscription(Model model) {
-		
-//		model.addAttribute("page", "patient");
-		model.addAttribute("patient", new Patient());
-		
+	public String inscription(@ModelAttribute("inscriptionFormPatient") InscriptionFormPatient inscriptionFormPatient, Model model) {
+		model.addAttribute("page", "patient");
+
 		return "patient/inscriptionPatient";
 	}
-	
+
+	@GetMapping("/save")
+	public String save(@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
+			BindingResult result, Model model) {
+
+		model.addAttribute("page", "patient");
+
+		Patient nouveauPatient = new Patient();
+		nouveauPatient.setNom(inscriptionFormPatient.getNom());
+		nouveauPatient.setPrenom(inscriptionFormPatient.getPrenom());
+//		repoPatient.save(nouveauPatient);
+
+		return "patient/inscriptionPatient";
+	}
+
 //	@GetMapping("/edit")
 //	public String edit(@RequestParam Long id, Model model) {
 //		model.addAttribute("page", "patient");
@@ -70,7 +82,7 @@ public class PatientController {
 //
 //		return "patient/mesInfosPatient";
 //	}
-	
+
 	@GetMapping("/editMesInfosPatient")
 	public String editInfosPatients(@RequestParam Long id, Model model) {
 		model.addAttribute("page", "patient");
@@ -83,10 +95,9 @@ public class PatientController {
 
 		return "patient/mesInfosPatient";
 	}
-	
 
 	@PostMapping("/save")
-	public String save(@ModelAttribute("eleve") @Valid Patient patient, BindingResult result, Model model) {
+	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("page", "patient");
