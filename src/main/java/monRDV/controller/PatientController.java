@@ -49,9 +49,17 @@ public class PatientController {
 		return "patient/patientEdit";
 	}
 
+	@GetMapping("/inscription")
+	public String inscription(Model model) {
+//		model.addAttribute("page", "patient");
+//		model.addAttribute("patient", new Patient());
+		
+		return "patient/praticienInscription";
+	}
+	
 	@GetMapping("/edit")
 	public String edit(@RequestParam Long id, Model model) {
-		model.addAttribute("page", "patient");
+		model.addAttribute("page", "praticien");
 		Optional<Patient> opt = repoPatient.findById(id);
 		if (opt.isPresent()) {
 			model.addAttribute("eleve", opt.get());
