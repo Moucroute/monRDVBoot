@@ -297,7 +297,7 @@ public class MonRdvBootApplicationTests {
 		praticien1.getSpecialites().add(specialite5);
 		praticien1.getSpecialites().add(specialite3);
 		praticien1.getLieux().add(lieu3);
-//		praticien1.setLieux(lieux1);
+		praticien1.setLieux(lieux1);
 		praticien1.setModalites(modalites1);
 		praticien1.setCreneauDisponibles(creneauxdisponibles1);
 
@@ -306,20 +306,20 @@ public class MonRdvBootApplicationTests {
 		praticien2.setPrenom("Bernard");
 		praticien2.setPrendCarteVitale(true);
 		praticien2.setValidationAuto(true);
-//		praticien2.setSpecialites(specialites1);  //  /!\ le setSpecialite ne fonctionne pas
+////		praticien2.setSpecialites(specialites1);  //  /!\ le setSpecialite ne fonctionne pas
 
-//		praticien2.setLieux(lieux2);
-//		praticien2.setModalites(modalites1);
-//		praticien2.setCreneauDisponibles(creneauxdisponibles1);
+		praticien2.setLieux(lieux2);
+		praticien2.setModalites(modalites1);
+		praticien2.setCreneauDisponibles(creneauxdisponibles1);
 		Praticien praticien3 = new Praticien();
 		praticien3.setNom("Masse");
 		praticien3.setPrenom("Gregoire");
 		praticien3.setPrendCarteVitale(true);
 		praticien3.setValidationAuto(true);
-//		praticien3.setSpecialites(specialites3);
-//		praticien3.setLieux(lieux3);
-//		praticien3.setModalites(modalites1);
-//		praticien3.setCreneauDisponibles(creneauxdisponibles1);
+		praticien3.setSpecialites(specialites3);
+		praticien3.setLieux(lieux3);
+		praticien3.setModalites(modalites1);
+		praticien3.setCreneauDisponibles(creneauxdisponibles1);
 
 		praticiens1.add(praticien1);
 
@@ -330,8 +330,8 @@ public class MonRdvBootApplicationTests {
 //		Liens restants ---------------------------------------------------------------------------------
 
 		creneaudisponible1.setPraticien(praticien1);
-//		creneaudisponible2.setPraticien(praticien1);
-//		creneaudisponible2.setPraticien(praticien2);
+		creneaudisponible2.setPraticien(praticien1);
+		creneaudisponible2.setPraticien(praticien2);
 
 		lieu3.setPraticien(praticien1);
 
