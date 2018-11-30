@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layoutPatient.html">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Inscription</title>
 </head>
 <body>
@@ -19,6 +19,11 @@
 				<label for="prenom">Prenom:</label> <input type="text"
 					class="form-control" id="prenom" placeholder="Entrer un prenom"
 					name="prenom" th:value="${inscriptionFormPatient.prenom}">
+			</div>
+			<div class="form-group">
+				<label for="telephone">Numéro de téléphone:</label> <input type="text"
+					class="form-control" id="telephone" placeholder="Entrer votre numéro de téléphone"
+					name="telephone" th:value="${inscriptionFormPatient.telephone}">
 			</div>
 
 

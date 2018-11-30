@@ -1,5 +1,7 @@
 package monRDV.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import monRDV.model.InscriptionFormPatient;
 import monRDV.model.Patient;
+import monRDV.model.Utilisateur;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryUtilisateur;
 
@@ -50,8 +53,9 @@ public class PatientController {
 	}
 
 	@GetMapping("/inscription")
-	public String inscription(@ModelAttribute("inscriptionFormPatient") InscriptionFormPatient inscriptionFormPatient, Model model) {
+	public String inscription(Model model) {
 		model.addAttribute("page", "patient");
+		model.addAttribute("inscriptionFormPatient", new InscriptionFormPatient());
 
 		return "patient/inscriptionPatient";
 	}
@@ -65,7 +69,13 @@ public class PatientController {
 		Patient nouveauPatient = new Patient();
 		nouveauPatient.setNom(inscriptionFormPatient.getNom());
 		nouveauPatient.setPrenom(inscriptionFormPatient.getPrenom());
-//		repoPatient.save(nouveauPatient);
+//		nouveauPatient.setDateNaissance(inscriptionFormPatient.getPrenom());
+		nouveauPatient.setDateCreation(new Date());
+		nouveauPatient.setDefaut(true);
+
+//		Utilisateur nouvelUtilisateur = new Utilisateur();
+//		nouvelUtilisateur.setTelephone(inscriptionFormPatient.getTelephone());
+		repoPatient.save(nouveauPatient);
 
 		return "patient/inscriptionPatient";
 	}
@@ -85,13 +95,25 @@ public class PatientController {
 
 	@GetMapping("/editMesInfosPatient")
 	public String editInfosPatients(@RequestParam Long id, Model model) {
+		List<Patient> patientsUt = new ArrayList<Patient>();
+
 		model.addAttribute("page", "patient");
-		Optional<Patient> opt = repoPatient.findById(id);
-		if (opt.isPresent()) {
-			model.addAttribute("patient", opt.get());
+		Utilisateur utilisateur = repoUtilisateur.findWithPatients(id);
+		if (utilisateur != null) {
+			model.addAttribute("utilisateur", utilisateur);
+			for (Patient patient : utilisateur.getPatients()) {
+				if (patient.getDefaut()) {
+					model.addAttribute("patient", patient);
+				} else {
+					patientsUt.add(patient);
+				}
+			}
 		} else {
+			model.addAttribute("utilisateur", new Utilisateur());
 			model.addAttribute("patient", new Patient());
 		}
+
+		model.addAttribute("patientsUt", patientsUt);
 
 		return "patient/mesInfosPatient";
 	}
