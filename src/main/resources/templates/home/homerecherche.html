@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout.html">
+	layout:decorator="layoutHome.html">
 <head>
 <meta charset="UTF-8">
 <title>Liste des praticiens</title>
@@ -9,19 +9,10 @@
 <body>
 	<section layout:fragment="content">
 
-<!-- 		<ul class="nav nav-pills"> -->
-<!-- 			<li th:classappend="${page eq 'eleve'} ? active"><a -->
-<!-- 				th:href="@{/eleve/list}">Eleve</a></li> -->
-<!-- 			<li th:classappend="${page eq 'salle'} ? active"><a -->
-<!-- 				th:href="@{/salle/list}">Salle</a></li> -->
-<!-- 			<li th:classappend="${page eq 'matiere'} ? active"><a -->
-<!-- 				th:href="@{/matiere/list}">Matière</a></li> -->
-<!-- 		</ul> -->
 
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
-				<div th:each="praticien : ${mesPraticiens} class="thumbnail">
-					<img src="..." alt="...">
+				<div th:each="praticien : ${mesPraticiens}" class="thumbnail">
 					<div class="caption">
 						<h3>
 							<font style="text-transform: uppercase;">[[${praticien.nom}]]</font>
@@ -31,8 +22,12 @@
 							<li>>[[${specialite}]]</li>
 						</ul>
 						<p>Prochain rendez-vous le</p>
+						<p th:if="${praticien.prendCarteVitale}">Prends la carte
+							vitale</p>
+						<p th:unless="${praticien.prendCarteVitale}">Ne prends pas la
+							carte vitale</p>
 						<p>
-							<a href="#" class="btn btn-primary" role="button">Choisir</a> 
+							<a href="#" class="btn btn-primary" role="button">Choisir</a>
 						</p>
 					</div>
 				</div>
