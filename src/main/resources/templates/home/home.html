@@ -14,11 +14,7 @@
 		<!-- 		<h5></h5> -->
 		<h5></h5>
 
-
-		<form th:action="" @{/homerecherche/findByVille(ville=ville)}
-			" method="post">
-
-
+		<form th:action="@{/homerecherche/listByVille}" method="post">
 
 			<div class="form-group">
 				<label for="nom">Nom du praticien:</label> <input type="text"
@@ -27,7 +23,7 @@
 			</div>
 			<div class="form-group">
 				<label for="lieu">Entrer une ville:</label> <select
-					id="lieu.adresse?.ville" name="ville" class="form-control">
+					id="ville" name="ville" class="form-control">
 					<option th:each="lieu : ${lieux}" th:value="${lieu}"
 						th:text="${lieu.adresse?.ville}"
 						th:selected="${lieu.adresse?.ville == ville}"></option>
