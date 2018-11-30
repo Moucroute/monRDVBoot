@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Liste des praticiens</title>
 </head>
 <body>
+	<section layout:fragment="content">
 
+<!-- 		<ul class="nav nav-pills"> -->
+<!-- 			<li th:classappend="${page eq 'eleve'} ? active"><a -->
+<!-- 				th:href="@{/eleve/list}">Eleve</a></li> -->
+<!-- 			<li th:classappend="${page eq 'salle'} ? active"><a -->
+<!-- 				th:href="@{/salle/list}">Salle</a></li> -->
+<!-- 			<li th:classappend="${page eq 'matiere'} ? active"><a -->
+<!-- 				th:href="@{/matiere/list}">Matière</a></li> -->
+<!-- 		</ul> -->
+
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<div th:each="praticien : ${mesPraticiens} class="thumbnail">
+					<img src="..." alt="...">
+					<div class="caption">
+						<h3>
+							<font style="text-transform: uppercase;">[[${praticien.nom}]]</font>
+							[[${praticien.prenom}]]
+						</h3>
+						<ul th:each="specialite : ${praticien.specialites}">
+							<li>>[[${specialite}]]</li>
+						</ul>
+						<p>Prochain rendez-vous le</p>
+						<p>
+							<a href="#" class="btn btn-primary" role="button">Choisir</a> 
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
