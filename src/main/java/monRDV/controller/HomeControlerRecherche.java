@@ -39,13 +39,24 @@ public class HomeControlerRecherche {
 	public String listByVille(Model model, @RequestParam String ville) { 
 		
 		List<Praticien> praticiens = repoPraticien.findByVille(ville); 
-
+		model.addAttribute("ville", ville);
 		model.addAttribute("page", "accueil");
 		model.addAttribute("mesPraticiens", praticiens); 
 
 		return "home/homerecherche"; 
 	}
 	
+//	@PostMapping("/listByVille")
+//	public String listByVille(Model model, @RequestParam String ville) { 
+//		
+//		List<Praticien> praticiens = repoPraticien.findByVille(ville); 
+//		model.addAttribute("ville", ville);
+//		model.addAttribute("page", "accueil");
+//		model.addAttribute("mesPraticiens", praticiens); 
+//
+//		return "home/homerecherche"; 
+//	}
+//	
 //	@GetMapping({"/sort"}) // ETAPE 1
 //	public String sort(Model model, @RequestParam String by) { 
 //		
