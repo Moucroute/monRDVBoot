@@ -12,7 +12,10 @@
 			<div th:text="${rendezvous.id}"></div>
 			<div th:text="${rendezvous.Patient.nom}"></div>
 			<div th:text="${rendezvous.Patient.prenom}"></div>
-<!-- 			<div th:each="creneauxrdv: ${rdvAVenirRDV.rdvAVenirCreneaux}"> -->
+			<div th:each="creneauxrdv: ${rendezvous.creneaux}">les creneaux
+				<div th:text="${creneauxrdv.id}"></div>
+				<div th:text="${#dates.format(creneauxrdv.debut, 'HH:mm dd/MM/yyyy')}"></div>
+				<div th:text="${#dates.format(creneauxrdv.fin, 'HH:mm dd/MM/yyyy')}"></div>
 			</div>
 		</div>
 
