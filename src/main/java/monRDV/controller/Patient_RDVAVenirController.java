@@ -53,6 +53,11 @@ public class Patient_RDVAVenirController {
 		model.addAttribute("rdvAVenirRDV", rendezvouss);
 		
 		List<CreneauDisponible> creneaux = repoCreneauDisponible.findByUtilisateur(id);
+		int indice=1;
+		for (RendezVous rdv : rendezvouss) {
+			
+			
+		}
 		model.addAttribute("rdvAVenirCreneaux", creneaux);
 		
 		
