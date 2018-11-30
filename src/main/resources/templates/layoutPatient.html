@@ -2,15 +2,59 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>$CONTENT_TITLE</title>
-<link rel="stylesheet" href="/assets/css/bootstrap.css">
-<link rel="stylesheet" href="/css/app.css">
+<title>Patient</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="/assets/js/jquery-3.3.1.js"></script>
 <script src="/assets/js/bootstrap.js"></script>
 <script src="/js/app.js"></script>
 </head>
 <body>
-	
-</body>
-</html>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">ResaDoc</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li th:classappend="${page eq 'home'} ? active" ><a th:href="@{/}">Acceuil</a></li>
+				<li th:classappend="${page eq 'prendre_rendez_vous'} ? active"><a th:href="@{/prendre_rendez_vous/list}">Prendre Un Rendez Vous</a></li>
+				<li th:classappend="${page eq 'historique'} ? active"><a th:href="@{/historique/list}">Historique</a></li>
+				<li th:classappend="${page eq 'mes_infos'} ? active"><a th:href="@{/mes_infos/list}">Mes infos </a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/inscription}"><span class="glyphicon glyphicon-user"></span>
+						Inscription</a></li>
+				<li><a th:href="@{/inscription}"><span class="glyphicon glyphicon-log-in"></span>
+						Connexion</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+
+		<div class="col-sm-12">
+			<section layout:fragment="content">
+				<p>Page content goes here</p>
+			</section>
+		</div>
+	</div>
+
+	<footer>
+		<nav class="navbar navbar-default text-center">
+			<div class="container-fluid">
+				</br>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-envelope"></span> Contact
+					</button>
+					<button type="button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-file"></span> Mentions Légales
+					</button>
+					<button type="button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-list"></span> Charte
+						d'utilisation
+					</button>
+				</div>
+			</div>
+			</br>
+		</nav>
+	</footer>
