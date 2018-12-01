@@ -32,7 +32,7 @@ public class Utilisateur {
 	private int version;
 	
 	@Column(name = "email")
-	@UniqueElements // TODO : faire valider l'annotation par Eric et Jérome
+	// @UniqueElements - TODO : faire valider l'annotation par Eric et Jérome
 	private String email;
 	
 	@Column(name = "telephone")
