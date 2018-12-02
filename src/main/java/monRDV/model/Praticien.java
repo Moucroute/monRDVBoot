@@ -23,14 +23,19 @@ public class Praticien {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	@Version
 	private Integer version;
+	
 	@Column(name = "nom", length = 100)
 	private String nom;
+	
 	@Column(name = "prenom", length = 100)
 	private String prenom;
+	
 	@Column(name = "Prend_Carte_Vitale")
 	private Boolean prendCarteVitale;
+	
 	@Column(name = "Validation_Auto")
 	private Boolean validationAuto;
 
@@ -41,8 +46,10 @@ public class Praticien {
 
 	@OneToMany(mappedBy = "praticien")
 	private List<Lieu> lieux = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "praticien")
 	private List<Modalite> modalites = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "praticien")
 	private List<CreneauDisponible> creneaux = new ArrayList<>();
 
