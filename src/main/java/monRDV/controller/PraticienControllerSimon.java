@@ -67,7 +67,7 @@ public class PraticienControllerSimon {
 
 		repoPraticien.save(praticien);
 
-		return "redirect:/monCompte"; // ETAPE 4
+		return "redirect:/editMonCompte"; // ETAPE 4
 
 	}
 

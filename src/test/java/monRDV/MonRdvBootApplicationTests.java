@@ -126,6 +126,17 @@ public class MonRdvBootApplicationTests {
 
 		utilisateur1 = repoUtilisateur.save(utilisateur1); // managed
 
+
+		Utilisateur utilisateur2 = new Utilisateur(); // new
+
+		utilisateur2.setEmail("utilisateur2@gmail.com");
+		utilisateur2.setTelephone("0654879865");
+		utilisateur2.setDateCreation(new Date());
+		utilisateur2.setMotDePasse("ettasoeur");
+		utilisateur2.setProfil(Profil.Praticien);
+
+		utilisateur2 = repoUtilisateur.save(utilisateur2); // managed
+
 //		Utilisateur utilisateur1Find = daoUtilisateur.find(utilisateur1.getId());
 //		utilisateur1 = daoUtilisateur.save(utilisateur1); // managed
 //		utilisateur1Find = daoUtilisateur.find(utilisateur1.getId());
@@ -300,6 +311,7 @@ public class MonRdvBootApplicationTests {
 		praticien1.setLieux(lieux1);
 		praticien1.setModalites(modalites1);
 		praticien1.setCreneauDisponibles(creneauxdisponibles1);
+		praticien1.setUtilisateur(utilisateur2);
 
 		Praticien praticien2 = new Praticien();
 		praticien2.setNom("Tapie");
