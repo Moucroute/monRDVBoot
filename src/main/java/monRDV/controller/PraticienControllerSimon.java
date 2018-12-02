@@ -25,7 +25,7 @@ public class PraticienControllerSimon {
 
 	@Autowired
 	IRepositoryPraticien repoPraticien;
-	
+
 	@Autowired
 	IRepositoryUtilisateur repoUtilisateur;
 
@@ -60,14 +60,11 @@ public class PraticienControllerSimon {
 		Utilisateur utilisateur = repoUtilisateur.findById(utilisateurId).get();
 		Praticien praticien = utilisateur.getPraticien();
 		Specialite specialite = repoSpecialite.findById(specialiteId).get();
-
 		List<Specialite> specialites = praticien.getSpecialites();
-		
 		specialites.remove(specialite);
-
 		repoPraticien.save(praticien);
 
-		return "redirect:/editMonCompte"; // ETAPE 4
+		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
 
 	}
 
