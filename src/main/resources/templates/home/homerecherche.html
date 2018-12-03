@@ -9,17 +9,17 @@
 <body>
 	<section layout:fragment="content">
 
-		<div class="btn-group">
-			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Trier par <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="@{/homerecherche/sort(by=price)}">Tarif</a></li>
-				<li><a href="@{/homerecherche/sort(by=dispo)}">Date de disponibilite</a></li>
-				<li><a href="@{/homerecherche/sort(by=place)}">Lieu</a></li>
-			</ul>
-		</div>
+<!-- 		<div class="btn-group"> -->
+<!-- 			<button type="button" class="btn btn-default dropdown-toggle" -->
+<!-- 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 				Trier par <span class="caret"></span> -->
+<!-- 			</button> -->
+<!-- 			<ul class="dropdown-menu"> -->
+<!-- 				<li><a href="@{/homerecherche/sort(by=price)}">Tarif</a></li> -->
+<!-- 				<li><a href="@{/homerecherche/sort(by=dispo)}">Date de disponibilite</a></li> -->
+<!-- 				<li><a href="@{/homerecherche/sort(by=place)}">Lieu</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
 
 
 
@@ -42,7 +42,7 @@
 						<p th:unless="${praticien.prendCarteVitale}">Ne prends pas la
 							carte vitale</p>
 						<p>
-							<a href="#" class="btn btn-primary" role="button">Choisir</a>
+							<a href="patient/seConnecter" class="btn btn-primary" role="button">Choisir</a>
 						</p>
 					</div>
 				</div>
