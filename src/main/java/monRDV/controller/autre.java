@@ -9,12 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/autre")
 public class autre {
 
-
-	
-	
 	@GetMapping("contact")
 	public String contact(Model model) {
 
-		return ( "autre/contact");
+		return ("Autres/contact");
 	}
+
+	@GetMapping("mention_legales")
+	public String mention_legales(Model model) {
+
+		return ("Autres/mention_legales");
+	}
+	
+	
+	@GetMapping("charte_utilisation")
+	public String charte_utilisation(Model model) {
+
+		return ("Autres/charte_utilisation");
+	}
+
 }
