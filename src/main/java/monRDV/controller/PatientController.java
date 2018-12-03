@@ -123,7 +123,7 @@ public class PatientController {
 					model.addAttribute("patient", patientForm);
 				} else {
 					patientsUt.add(patient);
-				} 
+				}
 			}
 		} else {
 			model.addAttribute("patient", new PatientForm());
@@ -145,28 +145,30 @@ public class PatientController {
 		}
 
 		Optional<Patient> optp = repoPatient.findById(patientForm.getId());
-		Optional<Utilisateur> optu = repoUtilisateur.findById(patientForm.getId());
 
-
-		if (optp.isPresent() && optu.isPresent()) {
+		if (optp.isPresent()) {
 			Patient patient = optp.get();
+
+			Optional<Utilisateur> optu = repoUtilisateur.findById(patient.getUtilisateur().getId());
 
 			patient.setNom(patientForm.getNom());
 			patient.setPrenom(patientForm.getPrenom());
 
 			repoPatient.save(patient);
-		
-			Utilisateur utilisateur = optu.get();
-		
-			utilisateur.setEmail(patientForm.getEmail());
-			utilisateur.setMotDePasse(patientForm.getMotDePasse());
-			utilisateur.setTelephone(patientForm.getTelephone());
 
-			repoUtilisateur.save(utilisateur);
+			if (optu.isPresent()) {
+				Utilisateur utilisateur = optu.get();
+
+				utilisateur.setEmail(patientForm.getEmail());
+				utilisateur.setMotDePasse(patientForm.getMotDePasse());
+				utilisateur.setTelephone(patientForm.getTelephone());
+
+				repoUtilisateur.save(utilisateur);
+			}
 
 		}
 
-		return "patient/mesInfosPatient";
+		return "forward:editMesInfosPatient";
 	}
 
 	@GetMapping("/delete")
@@ -185,13 +187,14 @@ public class PatientController {
 			Model model) {
 		if (repoUtilisateur.findWithEmail(utilisateur.getEmail()) != null) {
 			Utilisateur nouvelUtilisateur = repoUtilisateur.findWithEmail(utilisateur.getEmail());
-			if (nouvelUtilisateur.getMotDePasse().equals(utilisateur.getMotDePasse()) ) {
+			if (nouvelUtilisateur.getMotDePasse().equals(utilisateur.getMotDePasse())) {
 				System.out.println(
 						"00000000000000000000000000000000 L'utilisateur est connecté!!! 0000000000000000000000000000000000");
 				return "patient/inscriptionPatientValidation";
 			} else {
 				System.out.println(
-						"00000000000000000000000000000000 Le mot de passe n'est pas correct!! 0000000000000000000000000000000000  " + nouvelUtilisateur.getMotDePasse() + " = " + utilisateur.getMotDePasse());
+						"00000000000000000000000000000000 Le mot de passe n'est pas correct!! 0000000000000000000000000000000000  "
+								+ nouvelUtilisateur.getMotDePasse() + " = " + utilisateur.getMotDePasse());
 
 				return "patient/inscriptionPatientValidation";
 
