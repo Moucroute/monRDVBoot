@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,6 +64,40 @@ public class PraticienControllerSimon {
 		List<Specialite> specialites = praticien.getSpecialites();
 		specialites.remove(specialite);
 		repoPraticien.save(praticien);
+
+		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
+
+	}
+
+	@PostMapping("/addSpecialites")
+	public String addSpecialites(@RequestParam Long utilisateurId, @RequestParam List<Long> checkedSpecialites) {
+
+		Utilisateur utilisateur = repoUtilisateur.findById(utilisateurId).get();
+		Praticien praticien = utilisateur.getPraticien();
+		Specialite specialite = null;
+
+		List<Specialite> specialites = praticien.getSpecialites();
+
+		specialites.removeAll(specialites);
+
+		for (Long specialiteId : checkedSpecialites) {
+			specialite = repoSpecialite.findById(specialiteId).get();
+			specialites.add(specialite);
+		}
+
+		repoPraticien.save(praticien);
+
+		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
+
+	}
+
+	@PostMapping("/addNewSpecialite")
+	public String addNewSpecialite(@RequestParam Long utilisateurId, @RequestParam String newSpecialite) {
+
+		Specialite specialite = new Specialite();
+		specialite.setLibelle(newSpecialite);
+		
+		repoSpecialite.save(specialite);
 
 		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
 

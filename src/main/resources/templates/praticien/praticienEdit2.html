@@ -12,7 +12,7 @@
 
 		<div class="row">
 			<div class="col-lg-1"></div>
-			<div class="col-lg-5">
+			<div class="col-lg-3">
 
 				<h3>Spécialités Enregistrées :</h3>
 				<br>
@@ -22,39 +22,73 @@
 						<thead>
 							<tr>
 								<th>Spécialités</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="specialite : ${mesSpecialites}">
 								<td>[[${specialite.libelle}]]</td>
 
-								<td><a
-									th:href="@{/praticien/deleteSpecialite(specialiteId=${specialite.id},utilisateurId=${utilisateurId})}"
-									class="btn btn-danger btn-xs"><span
-										class="glyphicon glyphicon-trash"></span></a></td>
 							</tr>
 						</tbody>
 					</table>
+					<br>
 
 				</div>
 
 
 			</div>
 
-			<div class="col-lg-5">
+			<div class="col-lg-1"></div>
 
-				<h3>Ajouter une spécialité existante :</h3>
+			<div class="col-lg-4">
+
+				<h3>Modifier vos spécialités :</h3>
+				<br> <br>
+
+				<form action="#" th:action="@{/praticien/addSpecialites}"
+					method="post">
+					<input type="hidden" name="utilisateurId"
+						th:value="${utilisateurId}">
+
+					<div class="checkbox" th:each="specialite : ${allSpecialites}">
+
+						<input type="checkbox" th:name="checkedSpecialites"
+							th:value="${specialite.id}"
+							th:checked=${mesSpecialites.contains(specialite)} /> <label
+							th:text="${specialite.libelle}"></label>
+
+					</div>
+
+					<br> <input type="submit" class="btn btn-success btn-lg" />
+
+				</form>
 				<br>
-				<div th:each="specialite : ${allSpecialites}">
 
-					<input type="checkbox" id="specialite" name="specialite.id">
-					<label for="specialitesExistantes">[[${specialite.libelle}]]</label>
+			</div>
 
-				</div>
+			<div class="col-lg-2">
 
-				<a th:href="@{/specialite/add}" class="btn btn-success btn-lg"><span
-					class="glyphicon glyphicon-plus"></span></a>
+				<h3>Ajouter une spécialité inexistante :</h3>
+				<br> <br>
+
+
+				<form th:action="@{/praticien/addNewSpecialite}" method="post">
+
+					<input type="hidden" name="utilisateurId"
+						th:value="${utilisateurId}">
+
+					<div class="form-group">
+						<label for="newSpecialite">Nouvelle specialité :</label> <input
+							type="text" class="form-control" id="newSpecialite"
+							placeholder="Entrer une spécialité" name="newSpecialite">
+					</div>
+					<br>
+					<button type="submit" class="btn btn-success btn-lg">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+					<br>
+
+				</form>
 
 			</div>
 
