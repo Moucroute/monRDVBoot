@@ -14,36 +14,71 @@
     <div class="col-sm-1"></div>
 
     <div class="col-sm-4">Paramètres du compte
+    <form th:action="@{/praticien/save}" method="post">
+    <div>
+    <input type="hidden" name="utilisateurId" th:value="${utilisateurId}">
+	</div>
+    
         <br>
         <br>
-    		<div class="form-group">
-				<label for="nom">Nom:</label> <input type="text" disabled="disabled"
+    		<div class="form-group"> 
+				<label for="nom">Nom:</label> 
+<!-- 				<div th:switch="${edit}">  -->
+<!-- 				<input th:case="'list'" type="text" disabled="disabled" -->
+<!-- 					class="form-control" id="nom" placeholder="Entrer un nom" -->
+<!-- 					name="nom" th:value="${monPraticien.nom}"> -->
+				
+				<input type="text" 
 					class="form-control" id="nom" placeholder="Entrer un nom"
 					name="nom" th:value="${monPraticien.nom}">
-			</div>
-        <br>
-	    		<div class="form-group">
-				<label for="prenom">Prénom:</label> <input type="text" disabled="disabled"
-					class="form-control" id="nom" placeholder="Entrer un prénom"
-					name="prenom" th:value="${monPraticien.prenom}">
-			</div>
-        <br>
-    		<div class="form-group">
-				<label for="email">Email:</label> <input type="text" disabled="disabled"
-					class="form-control" id="email" placeholder="Entrer un email"
-					name="utilisateur.email" th:value="${monPraticien.utilisateur?.email}">
+<!-- 				</div> -->
 			</div>
         <br>
 	    	<div class="form-group">
-				<label for="motDePasse">Mot de passe:</label> <input type="text" disabled="disabled"
+				<label for="prenom">Prénom:</label>
+<!-- 				<div th:switch="${edit}"> -->
+<!-- 				<input th:case="'list'" type="text" disabled="disabled" -->
+<!-- 					class="form-control" id="nom" placeholder="Entrer un prénom" -->
+<!-- 					name="prenom" th:value="${monPraticien.prenom}">  -->
+				<input type="text"
+					class="form-control" id="nom" placeholder="Entrer un prénom"
+					name="prenom" th:value="${monPraticien.prenom}">
+<!-- 				</div> -->
+			</div>
+        <br>
+    		<div class="form-group">
+				<label for="email">Email:</label>
+<!-- 				<div th:switch="${edit}"> -->
+<!-- 				<input th:case="'list'" type="text" disabled="disabled" -->
+<!-- 					class="form-control" id="email" placeholder="Entrer un email" -->
+<!-- 					name="utilisateur.email" th:value="${monPraticien.utilisateur?.email}"> -->
+				<input type="text"
+					class="form-control" id="email" placeholder="Entrer un email"
+					name="utilisateur.email" th:value="${monPraticien.utilisateur?.email}">
+<!-- 				</div> -->
+			</div>
+        <br>
+	    	<div class="form-group">
+				<label for="motDePasse">Mot de passe:</label>
+<!-- 				<div th:switch="${edit}"> -->
+<!-- 				<input  th:case="'list'" type="text" disabled="disabled" -->
+<!-- 					class="form-control" id="motDePasse" placeholder="Entrer un mot de passe" -->
+<!-- 					name="utilisateur.motDePasse" th:value="${monPraticien.utilisateur?.motDePasse}"> -->
+				<input type="text" 
 					class="form-control" id="motDePasse" placeholder="Entrer un mot de passe"
 					name="utilisateur.motDePasse" th:value="${monPraticien.utilisateur?.motDePasse}">
+<!-- 				</div> -->
 			</div>
         <br>    
-        	<a href="http://localhost:8080/praticien/moncompte/edit" class="btn btn-primary" role="button">Modifier</a>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
-        	<a href="http://localhost:8080/praticien/moncompte" class="btn btn-primary" role="button">Envoyer les modifications</a> 
+<!--             <div th:switch="${edit}"> -->
+<!--             <a href="http://localhost:8080/praticien/moncompte/edit" class="btn btn-primary" role="button">Modifier</a>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; -->
+<!--             <input th:case="'list'" type="submit" value="Envoyer les modifications" disabled="disabled"> -->
+            <input type="submit" value="Envoyer les modifications">
+<!--         	</div> -->
         <br>
+    </form>
     </div>
+    
     
     
     <div class="col-sm-1"></div>
@@ -51,7 +86,7 @@
     <div class="col-sm-4">Mes informations personnelles<br>
     	<br>
         <br>
-            <a href="http://localhost:8080/praticien/" class="btn btn-primary btn-lg" role="button">Modifier mes spécialités et motifs de consultation</a>
+            <a href="http://localhost:8080/praticien/editMonCompte" id="modifier" class="btn btn-primary btn-lg" role="button">Modifier mes spécialités et motifs de consultation</a>
         <br>
         <br>
         <br>
