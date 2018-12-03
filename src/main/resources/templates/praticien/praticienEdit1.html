@@ -73,7 +73,10 @@
 <!--             <div th:switch="${edit}"> -->
 <!--             <a href="http://localhost:8080/praticien/moncompte/edit" class="btn btn-primary" role="button">Modifier</a>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; -->
 <!--             <input th:case="'list'" type="submit" value="Envoyer les modifications" disabled="disabled"> -->
-            <input type="submit" value="Envoyer les modifications">
+			<button type="submit" class="btn btn-success btn-lg" >
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+<!--             <input type="submit" value="Envoyer les modifications"> -->
 <!--         	</div> -->
         <br>
     </form>
@@ -83,10 +86,13 @@
     
     <div class="col-sm-1"></div>
     
+
+
+    <input type="hidden" name="utilisateurId" th:value="${utilisateurId}">
     <div class="col-sm-4">Mes informations personnelles<br>
     	<br>
         <br>
-            <a href="http://localhost:8080/praticien/editMonCompte" id="modifier" class="btn btn-primary btn-lg" role="button">Modifier mes spécialités et motifs de consultation</a>
+            <a th:href="@{/praticien/editMesSpecialites(utilisateurId=${utilisateurId})}" id="modifier" class="btn btn-primary btn-lg" role="button">Modifier mes spécialités et motifs de consultation</a>
         <br>
         <br>
         <br>
@@ -127,9 +133,10 @@
 			</div>
         <br>
     </div>
+    </div>
 
-  </div>
-  
+
+
 	</section>
 </body>
 </html>
