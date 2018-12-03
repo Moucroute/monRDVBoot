@@ -37,13 +37,7 @@ public class Patient_RDVAVenirController {
 
 	}
 
-	@GetMapping({ "/", "/rdvAVenir" }) // ETAPE 1
-	public String listvide() {
-
-		return "patient/patientRDVAVenir"; // ETAPE 4
-	}
-
-	@GetMapping({ "/yo", "/rdvAVenir" }) // ETAPE 1
+	@GetMapping("/rdvAVenir") // ETAPE 1
 	public String list(@RequestParam Long id, Model model) {
 		
 		List<RendezVous> rendezvouss = repoRendezVous.findByUtilisateur(id);

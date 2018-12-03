@@ -8,25 +8,26 @@
 </head>
 <body>
 	<section layout:fragment="content">
-		<div class="well" th:each="rendezvous: ${rdvAVenirRDV}">
+		<div class="well" style="background-color: rgb(228, 229, 255)"
+			th:each="rendezvous: ${rdvAVenirRDV}">
 
-			<div th:text="${rendezvous.Patient.nom}"></div>
-			<div th:text="${rendezvous.Patient.prenom}"></div>
-			<div th:text="${rendezvous.modalite?.motif?.libelle}"></div>
-			<div th:text="${rendezvous.modalite?.motif?.specialite?.libelle}"></div>
-			<div th:each="creneauxrdv: ${rendezvous.creneaux}">
-				<br>
-				<div th:text="${#dates.format(creneauxrdv.debut, 'dd/MM/yyyy')}"></div>
-				<div th:text="${#dates.format(creneauxrdv.debut, 'HH:mm ')}"></div>
-				<div th:text="${#dates.format(creneauxrdv.fin, 'HH:mm ')}"></div>
-				<div th:text="${creneauxrdv.praticien.nom}"></div>
-				<div th:text="${creneauxrdv.praticien.prenom}"></div>
-				<div th:text="${creneauxrdv.lieu?.nom}"></div>
-				<div th:text="${creneauxrdv.lieu?.adresse?.rue}"></div>
-				<div th:text="${creneauxrdv.lieu?.adresse?.codePostal}"></div>
-				<div th:text="${creneauxrdv.lieu?.adresse?.ville}"></div>
-				<div th:text="${creneauxrdv.lieu?.adresse?.informations}"></div>
-			</div>
+				<div th:text="${rendezvous.Patient.nom}"></div>
+				<div th:text="${rendezvous.Patient.prenom}"></div>
+				<div th:text="${rendezvous.modalite?.motif?.libelle}"></div>
+				<div th:text="${rendezvous.modalite?.motif?.specialite?.libelle}"></div>
+				<div th:each="creneauxrdv: ${rendezvous.creneaux}">
+					<br>
+					<div th:text="${#dates.format(creneauxrdv.debut, 'dd/MM/yyyy')}"></div>
+					<div th:text="${#dates.format(creneauxrdv.debut, 'HH:mm ')}"></div>
+					<div th:text="${#dates.format(creneauxrdv.fin, 'HH:mm ')}"></div>
+					<div th:text="${creneauxrdv.praticien.nom}"></div>
+					<div th:text="${creneauxrdv.praticien.prenom}"></div>
+					<div th:text="${creneauxrdv.lieu?.nom}"></div>
+					<div th:text="${creneauxrdv.lieu?.adresse?.rue}"></div>
+					<div th:text="${creneauxrdv.lieu?.adresse?.codePostal}"></div>
+					<div th:text="${creneauxrdv.lieu?.adresse?.ville}"></div>
+					<div th:text="${creneauxrdv.lieu?.adresse?.informations}"></div>
+				</div>
 		</div>
 
 
