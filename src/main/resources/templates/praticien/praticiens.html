@@ -26,14 +26,14 @@
 				</thead>
 				<tbody>
 
-					<tr th:each="rendezVous : ${mesRendezVousEnAttente}">
-						<td>[[${#dates.format(rendezVous.rendezVousEnAttente.creneau.getDebut,
+					<tr th:each="rendezVous : ${rdvEnAttentes}">
+						<td>[[${#dates.format(rendezVous.dtRdv,
 							'dd/MM/yyyy')}]]</td>
-						<td>[[${#dates.format(rendezVous.rendezVousEnAttente.creneau.getDebut, 'HH:mm')}]]</td>
-						<td>[[${rendezVous.modalite.motif}]]</td>
-						<td>[[${rendezVous.rendezVousEnAttente.duree}]]</td>
-						<td>[[${rendezVous.patient.nom}]]</td>
-						<td>[[${rendezVous.patient.prenom}]]</td>
+						<td>[[${#dates.format(rendezVous.dtRdv, 'HH:mm')}]]</td>
+						<td>[[${rendezVous.motif}]]</td>
+						<td>[[${rendezVous.duree}]]</td>
+						<td>[[${rendezVous.nom}]]</td>
+						<td>[[${rendezVous.prenom}]]</td>
 						<td> <button type="submit" class="btn btn-success btn-lg">
 				<span class="glyphicon glyphicon-ok"></span>Confirmer</button> </td>
 					</tr>

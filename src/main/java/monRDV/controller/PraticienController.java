@@ -43,7 +43,7 @@ public class PraticienController {
 		super();
 
 	}
-//	@ModelAttribute("recup")
+
 	@GetMapping({ "/list" })
 	public String list(@RequestParam Long idPraticien, Model model) {
 
@@ -51,7 +51,7 @@ public class PraticienController {
 
 		List<RendezVous> rendezVouss = repoRendezVous.findAllWithCreneauxByPraticien(idPraticien);
 		model.addAttribute("page", "mesrendezVousEnAttente");
-//		 model.addRecup("mesRendezvousEnAttente", rendezVouss);
+		 
 
 		for (RendezVous rdv : rendezVouss) {
 			System.out.println(rdv.getId());
@@ -85,14 +85,17 @@ public class PraticienController {
 
 				System.out.println("dtRdv=" + rdvEnAttente.getDtRdv());
 				System.out.println("duree=" + rdvEnAttente.getDuree());
+				
+				rdvEnAttentes.add(rdvEnAttente);
 
 //				model.addAttribute("rendezVouss", rdvEnAttente);
 			}
-
 		}
+
+			model.addAttribute("rdvEnAttentes", rdvEnAttentes);
 
 		return "praticien/praticiens";
 
 	}
-
+	
 }
