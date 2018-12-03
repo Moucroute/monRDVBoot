@@ -33,10 +33,10 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Inscription</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Connexion</a></li>
+				<li><a th:href="@{/patient/inscription}"><span
+						class="glyphicon glyphicon-user"></span> Inscription</a></li>
+				<li><a th:href="@{/patient/inscription}"><span
+						class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -49,15 +49,16 @@
 		</div>
 	</div>
 
-<footer>
+	<footer>
 		<nav class="navbar navbar-default text-center">
 			<div class="container-fluid">
-				</br>
+				</br> <a href="Autres/contact.html">fdsfsdf</a>
 				<div class="btn-group">
-					<a th:href="@{/Autres/contact}"><button type="button"
-							class="btn btn-primary">
+					<a
+						href="C:/java/workspace/monRDVBoot/target/classes/templates/Autres/contact.html"><button
+							type="button" class="btn btn-primary">
 							<span class="glyphicon glyphicon-envelope"></span> Contact
-						</button></a> <a th:href="@{/Autres/mention_legales}"><button type="button"
+						</button></a> <a th:href="@{/mention_legales}"><button type="button"
 							class="btn btn-primary">
 							<span class="glyphicon glyphicon-file"></span> Mentions Légales
 						</button></a> <a th:href="@{/Autres/charte_utilisation}"><button

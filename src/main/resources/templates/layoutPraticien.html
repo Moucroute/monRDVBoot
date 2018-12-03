@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Praticien</title>
 <meta charset="utf-8">
@@ -21,32 +20,32 @@
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-				<header>
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">ResaDoc</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Accueil</a></li>
-				<li><a href="#">Ma Semaine</a></li>
-				<li><a href="#">Mes Disponibilités</a></li>
-				<li><a href="#">Mes RDV en attentes </a></li>
-				<li><a href="#">Mes Stats </a></li>
-				<li><a href="#">Mon Compte </a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Inscription</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Connexion</a></li>
-			</ul>
+			<header>
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">ResaDoc</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Accueil</a></li>
+					<li><a href="#">Ma Semaine</a></li>
+					<li><a href="#">Mes Disponibilités</a></li>
+					<li><a href="#">Mes RDV en attentes </a></li>
+					<li><a href="#">Mes Stats </a></li>
+					<li><a th:href="@{/praticien/moncompte}">Mon Compte </a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/patient/inscription}"><span
+							class="glyphicon glyphicon-user"></span> Inscription</a></li>
+					<li><a th:href="@{/patient/inscription}"><span
+							class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+				</ul>
 		</div>
 	</nav>
-			</header>
-			
+	</header>
 
-			<section layout:fragment="content">
-				<p>Page content goes here</p>
-			</section>
+
+	<section layout:fragment="content">
+		<p>Page content goes here</p>
+	</section>
 
 
 	<footer>
