@@ -9,16 +9,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import monRDV.model.CreneauDisponible;
 import monRDV.model.RendezVous;
 import monRDV.model.RendezVousEnAttente;
@@ -26,7 +22,6 @@ import monRDV.repository.IRepositoryCreneauDisponible;
 import monRDV.repository.IRepositoryModalite;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryRendezVous;
-
 
 @Controller
 @RequestMapping("/mesRendezVousEnAttente")
@@ -48,7 +43,7 @@ public class PraticienController {
 		super();
 
 	}
-
+//	@ModelAttribute("recup")
 	@GetMapping({ "/list" })
 	public String list(@RequestParam Long idPraticien, Model model) {
 
@@ -56,6 +51,7 @@ public class PraticienController {
 
 		List<RendezVous> rendezVouss = repoRendezVous.findAllWithCreneauxByPraticien(idPraticien);
 		model.addAttribute("page", "mesrendezVousEnAttente");
+//		 model.addRecup("mesRendezvousEnAttente", rendezVouss);
 
 		for (RendezVous rdv : rendezVouss) {
 			System.out.println(rdv.getId());
@@ -80,21 +76,23 @@ public class PraticienController {
 					}
 
 				}
-				
+
 				rdvEnAttente.setDtRdv(debut);
-				
+
 				long duree = fin.getTime() - debut.getTime();
-				
-				rdvEnAttente.setDuree(duree/60000);
-				
-			System.out.println("dtRdv="+rdvEnAttente.getDtRdv());
-			System.out.println("duree="+rdvEnAttente.getDuree());
+
+				rdvEnAttente.setDuree(duree / 60000);
+
+				System.out.println("dtRdv=" + rdvEnAttente.getDtRdv());
+				System.out.println("duree=" + rdvEnAttente.getDuree());
+
+//				model.addAttribute("rendezVouss", rdvEnAttente);
 			}
+
 		}
-		
-		return "praticien/praticiens"; 
+
+		return "praticien/praticiens";
 
 	}
-	
-		}
 
+}

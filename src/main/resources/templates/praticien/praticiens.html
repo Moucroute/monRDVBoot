@@ -27,22 +27,20 @@
 				<tbody>
 
 					<tr th:each="rendezVous : ${mesRendezVousEnAttente}">
-						<td>[[${#dates.format(rendezVousEnAttente.creneau.getDebut,
+						<td>[[${#dates.format(rendezVous.rendezVousEnAttente.creneau.getDebut,
 							'dd/MM/yyyy')}]]</td>
-						<td>[[${#dates.format(rendezVousEnAttente.creneau.getDebut, 'HH:mm')}]]</td>
+						<td>[[${#dates.format(rendezVous.rendezVousEnAttente.creneau.getDebut, 'HH:mm')}]]</td>
 						<td>[[${rendezVous.modalite.motif}]]</td>
-						<td>[[${rendezVousEnAttente.duree}]]</td>
+						<td>[[${rendezVous.rendezVousEnAttente.duree}]]</td>
 						<td>[[${rendezVous.patient.nom}]]</td>
 						<td>[[${rendezVous.patient.prenom}]]</td>
-						<td>
+						<td> <button type="submit" class="btn btn-success btn-lg">
+				<span class="glyphicon glyphicon-ok"></span>Confirmer</button> </td>
 					</tr>
 				</tbody>
 			</table>
-			<br>
-			<br>
-			<button type="submit" class="btn btn-success btn-lg">
-				<span class="glyphicon glyphicon-ok"></span>Confirmer</button>
-			</section>
+			
+						</section>
 </body>
 </html>
 
