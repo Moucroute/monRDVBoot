@@ -41,7 +41,7 @@ public class PraticienControllerSimon {
 //		return "praticien/praticienEdit2"; // ETAPE 4
 //	}
 
-	@GetMapping("/editMonCompte")
+	@GetMapping("/editMesSpecialites")
 	public String praticienEdit2(@RequestParam Long utilisateurId, Model model) {
 
 		List<Specialite> mesSpecialites = repoSpecialite.findByUtilisateurId(utilisateurId);
@@ -87,7 +87,7 @@ public class PraticienControllerSimon {
 
 		repoPraticien.save(praticien);
 
-		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
+		return "redirect:editMesSpecialites?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
 
 	}
 
@@ -99,7 +99,17 @@ public class PraticienControllerSimon {
 		
 		repoSpecialite.save(specialite);
 
-		return "redirect:editMonCompte?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
+		return "redirect:editMesSpecialites?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
+
+	}
+	
+	@GetMapping("/editMesMotifsConsultation")
+	public String praticienEdit3(@RequestParam Long utilisateurId, Model model) {
+
+
+		model.addAttribute("utilisateurId", utilisateurId);
+
+		return "praticien/praticienEdit3"; // ETAPE 4
 
 	}
 

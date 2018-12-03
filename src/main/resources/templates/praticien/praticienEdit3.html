@@ -1,40 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout.html">
+	layout:decorator="layoutPraticien.html">
 <head>
 <meta charset="UTF-8">
-<title>Edition des Matières</title>
+<title>Edition des motifs de consultation</title>
 </head>
 <body>
 	<section layout:fragment="content">
-		<h2>Edition des Matières</h2>
-		<form th:action="@{/matiere/save}" method="post">
-			<div class="form-group">
-				<label for="nom">Nom:</label> <input type="text"
-					class="form-control" id="nom" placeholder="Entrer un nom"
-					name="nom" th:value="${matiere.nom}">
-				<div th:errors="${matiere.nom}" class="alert alert-danger"></div>
+	
+		<div class="row">
+
+			<div class="col-lg-1"></div>
+
+			<div class="col-lg-10">
+				<h2>Edition des motifs de consultation</h2>
 			</div>
 
-			<div class="form-group">
-				<label for="duree">Durée:</label> <input type="number"
-					class="form-control" id="duree" placeholder="Entrer une duree"
-					name="duree" th:value="${matiere.duree}">
-			</div>
-			<div class="form-group">
-				<label for="niveau">Niveau:</label> <select id="niveau"
-					name="niveau" class="form-control">
-					<option th:each="niveau : ${niveaux}" th:value="${niveau}"
-						th:text="${niveau.label}"
-						th:selected="${matiere.niveau == niveau}"></option>
-				</select>
-			</div>
-
-			<button type="submit" class="btn btn-success btn-lg">
-				<span class="glyphicon glyphicon-ok"></span>
-			</button>
-		</form>
+			<div class="col-lg-1"></div>
+			
+		</div>
+		
 	</section>
 </body>
 </html>
