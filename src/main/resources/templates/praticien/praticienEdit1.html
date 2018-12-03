@@ -1,40 +1,100 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout.html">
+	layout:decorator="layoutPraticien.html">
 <head>
 <meta charset="UTF-8">
-<title>Edition des Matières</title>
+<title>Paramètres du compte</title>
 </head>
 <body>
 	<section layout:fragment="content">
-		<h2>Edition des Matières</h2>
-		<form th:action="@{/matiere/save}" method="post">
-			<div class="form-group">
-				<label for="nom">Nom:</label> <input type="text"
+
+  <div class="row">
+ 
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-4">Paramètres du compte
+        <br>
+        <br>
+    		<div class="form-group">
+				<label for="nom">Nom:</label> <input type="text" disabled="disabled"
 					class="form-control" id="nom" placeholder="Entrer un nom"
-					name="nom" th:value="${matiere.nom}">
-				<div th:errors="${matiere.nom}" class="alert alert-danger"></div>
+					name="nom" th:value="${monPraticien.nom}">
 			</div>
+        <br>
+	    		<div class="form-group">
+				<label for="prenom">Prénom:</label> <input type="text" disabled="disabled"
+					class="form-control" id="nom" placeholder="Entrer un prénom"
+					name="prenom" th:value="${monPraticien.prenom}">
+			</div>
+        <br>
+    		<div class="form-group">
+				<label for="email">Email:</label> <input type="text" disabled="disabled"
+					class="form-control" id="email" placeholder="Entrer un email"
+					name="utilisateur.email" th:value="${monPraticien.utilisateur?.email}">
+			</div>
+        <br>
+	    	<div class="form-group">
+				<label for="motDePasse">Mot de passe:</label> <input type="text" disabled="disabled"
+					class="form-control" id="motDePasse" placeholder="Entrer un mot de passe"
+					name="utilisateur.motDePasse" th:value="${monPraticien.utilisateur?.motDePasse}">
+			</div>
+        <br>    
+        	<a href="http://localhost:8080/praticien/moncompte/edit" class="btn btn-primary" role="button">Modifier</a>  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+        	<a href="http://localhost:8080/praticien/moncompte" class="btn btn-primary" role="button">Envoyer les modifications</a> 
+        <br>
+    </div>
+    
+    
+    <div class="col-sm-1"></div>
+    
+    <div class="col-sm-4">Mes informations personnelles<br>
+    	<br>
+        <br>
+            <a href="http://localhost:8080/praticien/" class="btn btn-primary btn-lg" role="button">Modifier mes spécialités et motifs de consultation</a>
+        <br>
+        <br>
+        <br>
+       		 <span>Carte Vitale</span>
+        <br>       		 
+ 			 <select name="cars">
+   				 <option value="oui">Oui</option>
+   				 <option value="non">Non</option>
+ 			 </select>
+        <br>
+        <br> 
+        <br>    	
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Adresses</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="lieu : ${monPraticien.lieux}">
+					<td th:text="${lieu.adresse.rue + ', ' + lieu.adresse.codePostal + ' ' + lieu.adresse.ville}"></td>
+					<td>
+					<a th:href="@{praticien/moncompte/edit(id=${monPraticien.id})}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a th:href="@{praticien/moncompte/delete(id=${monPraticien.id})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		<a th:href="@{/praticienEdit4}" class="btn btn-success btn-lg"><span
+			class="glyphicon glyphicon-plus"></span></a>
+        <br>
+        <br>
+	    	<div class="form-group">
+	    	<form>
+  				<input type="checkbox" name="confirmationauto" value="confirmationauto"> J'accepte la confirmation automatique de mes RDV<br>
+			</form>
+			</div>
+        <br>
+    </div>
 
-			<div class="form-group">
-				<label for="duree">Durée:</label> <input type="number"
-					class="form-control" id="duree" placeholder="Entrer une duree"
-					name="duree" th:value="${matiere.duree}">
-			</div>
-			<div class="form-group">
-				<label for="niveau">Niveau:</label> <select id="niveau"
-					name="niveau" class="form-control">
-					<option th:each="niveau : ${niveaux}" th:value="${niveau}"
-						th:text="${niveau.label}"
-						th:selected="${matiere.niveau == niveau}"></option>
-				</select>
-			</div>
-
-			<button type="submit" class="btn btn-success btn-lg">
-				<span class="glyphicon glyphicon-ok"></span>
-			</button>
-		</form>
+  </div>
+  
 	</section>
 </body>
 </html>
