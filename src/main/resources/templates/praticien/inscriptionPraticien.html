@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layoutHome.html">
+<head>
+<meta charset="UTF-8">
+<title>Inscription des praticiens</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<h1>Formulaire d'inscription Praticien</h1>
+
+		<form th:action="@{/praticien/save}" method="post">
+
+			<div class="form-group">
+				<label for="nom">Nom:</label> <input type="text"
+					class="form-control" id="nom" placeholder="Entrez votre nom"
+					name="nom" th:value="${inscriptionFormPraticien?.nom}">
+			</div>
+
+			<div class="form-group">
+				<label for="prenom">Prénom:</label> <input type="text"
+					class="form-control" id="prenom" placeholder="Entrez votre Prénom"
+					name="prenom" th:value="${inscriptionFormPraticien?.prenom}">
+			</div>
+
+			<div class="form-group">
+				<label for="telephone">Numéro de téléphone:</label> <input
+					type="text" class="form-control" id="telephone"
+					placeholder="Entrez votre numéro de Téléphone" name="telephone"
+					th:value="${inscriptionFormPraticien?.telephone}">
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text"
+					class="form-control" id="email" placeholder="Entrez votre email"
+					name="email" th:value="${inscriptionFormPraticien?.email}">
+			</div>
+
+			<div class="form-group">
+				<label for="motDePasse">Mot de passe:</label> <input type="text"
+					class="form-control" id="motDePasse"
+					placeholder="Entrez votre mot de passe" name="motDePasse"
+					th:value="${inscriptionFormPraticien?.motDePasse}">
+			</div>
+
+			<div class="form-group">
+				<label for="confirmationMotDePasse">Confirmation mot de
+					passe:</label> <input type="text" class="form-control"
+					id="confirmationMotDePasse"
+					placeholder="Confirmez votre mot de passe"
+					name="confirmationMotDePasse"
+					th:value="${inscriptionFormPraticien?.confirmationMotDePasse}">
+			</div>
+
+			<div class="form-group">
+				<label for="prendCarteVitale">Prenez-vous la Carte Vitale?</label> <select
+					id="prendCarteVitale" name="prendCarteVitale" class="form-control">
+					<option value="true"
+						th:selected="${inscriptionFormPraticien.prendCarteVitale == true}">Oui</option>
+					<option value="false"
+						th:selected="${inscriptionFormPraticien.prendCarteVitale == false}">Non</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Spécialités:</label>
+				<div class="checkbox" th:each="spec : ${specialites}">
+					<label><input name="specialite.id" type="checkbox" th:value="${spec.id}">[[${spec?.libelle}]]</label>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="specialite">Autre Spécialité:</label> <input type="text"
+					class="form-control" id="specialite" placeholder="Autre spécialité ?"
+					name="specialite" th:value="${inscriptionFormPraticien?.specialite}">
+			</div>
+			
+
+			<button type="submit" class="btn btn-info btn-md">Valider
+				votre inscription</button>
+		</form>
+	</section>
+</body>
+</html>
