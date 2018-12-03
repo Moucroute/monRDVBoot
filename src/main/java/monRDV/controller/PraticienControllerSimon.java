@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import monRDV.model.Modalite;
 import monRDV.model.Praticien;
 import monRDV.model.Specialite;
 import monRDV.model.Utilisateur;
+import monRDV.repository.IRepositoryModalite;
 import monRDV.repository.IRepositoryPraticien;
 import monRDV.repository.IRepositorySpecialite;
 import monRDV.repository.IRepositoryUtilisateur;
@@ -29,6 +31,9 @@ public class PraticienControllerSimon {
 
 	@Autowired
 	IRepositoryUtilisateur repoUtilisateur;
+
+	@Autowired
+	IRepositoryModalite repoModalite;
 
 //	@GetMapping({ "/connexion" })
 //	public String connexion(@RequestParam String email, Model model) {
@@ -96,20 +101,42 @@ public class PraticienControllerSimon {
 
 		Specialite specialite = new Specialite();
 		specialite.setLibelle(newSpecialite);
-		
+
 		repoSpecialite.save(specialite);
 
 		return "redirect:editMesSpecialites?utilisateurId=" + utilisateurId; // TODO : Faire valider la méthode par Eric
 
 	}
-	
+
 	@GetMapping("/editMesMotifsConsultation")
 	public String praticienEdit3(@RequestParam Long utilisateurId, Model model) {
 
+		Utilisateur utilisateur = repoUtilisateur.findById(utilisateurId).get();
+		Praticien praticien = utilisateur.getPraticien();
+		List<Modalite> modalites = praticien.getModalites();
 
+		model.addAttribute("mesModalites", modalites);
 		model.addAttribute("utilisateurId", utilisateurId);
 
 		return "praticien/praticienEdit3"; // ETAPE 4
+
+	}
+
+	@GetMapping("/editMotif")
+	public String praticienEdit3(@RequestParam Long utilisateurId, @RequestParam Modalite modalite) {
+
+		Utilisateur utilisateur = repoUtilisateur.findById(utilisateurId).get();
+		Praticien praticien = utilisateur.getPraticien();
+		Modalite modaliteManaged = repoModalite.findById(modalite.getMotif().getId()).get();
+
+		modaliteManaged.setDelaiAnnulation(modalite.getDelaiAnnulation());
+		modaliteManaged.setDuree(modalite.getDuree());
+		modaliteManaged.setDepassementHonoraires(modalite.getDepassementHonoraires());
+		modaliteManaged.setPrix(modalite.getPrix());
+
+		repoModalite.save(modaliteManaged);
+
+		return "redirect:editMesMotifsConsultation?utilisateurId=" + utilisateurId;
 
 	}
 
