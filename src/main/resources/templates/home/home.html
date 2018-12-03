@@ -14,10 +14,11 @@
 			<div class="col-sm-4">
 				<img src="img/home.jpg" class="img-rounded center-block" alt="" width="400"
 					height="200"><br><br>
-				<button type="submit" class="btn btn-default center-block">Se connecter</button><br>
+				
 			</div>
 
 
+<<<<<<< Updated upstream
 			<div class="col-sm-8" style="background-color: rgb(228, 229, 255)">
 
 				<h1 align="center">Bienvenue sur MonRDV !</h1>
@@ -64,6 +65,20 @@
 					<br>
 					<br>
 				</form>
+=======
+						<div class="form-group">
+							<label for="specialite">Specialité recherchée:</label> <select
+								id="specialite" name="specialite" class="form-control">
+								<option th:each="specialite : ${specialites}"
+									th:value="${specialite.libelle}" th:text="${specialite.libelle}"
+									th:selected="${specialite.libelle == specialite}"></option>
+							</select>
+						</div>
+						
+						<button type="submit" class="btn btn-success">Rechercher par spécialité</button><br><br>
+					</form>
+				</div>
+>>>>>>> Stashed changes
 			</div>
 		</div>
 	</section>

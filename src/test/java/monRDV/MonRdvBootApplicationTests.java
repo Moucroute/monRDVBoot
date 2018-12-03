@@ -83,16 +83,23 @@ public class MonRdvBootApplicationTests {
 		specialite4.setLibelle("cardiologie");
 
 		Specialite specialite5 = new Specialite();
-		specialite5.setLibelle("orthop�die");
-
+		specialite5.setLibelle("orthopédie");
+		
+		
 		specialites1.add(specialite1);
 		specialites1.add(specialite2);
+		specialites1.add(specialite3);
+		specialites1.add(specialite4);
+		specialites1.add(specialite5);
+		
 
 		specialite1 = repoSpecialite.save(specialite1);
 		specialite2 = repoSpecialite.save(specialite2);
 		specialite3 = repoSpecialite.save(specialite3);
 		specialite4 = repoSpecialite.save(specialite4);
 		specialite5 = repoSpecialite.save(specialite5);
+
+
 
 //		Specialite specialite1Find = daoSpecialite.find(specialite1.getId());
 //		System.out.println(specialite1.getId() + "=" + specialite1Find.getId());
@@ -104,7 +111,7 @@ public class MonRdvBootApplicationTests {
 		List<Motif> motifs1 = new ArrayList<>();
 
 		Motif motif1 = new Motif();
-		motif1.setLibelle("contr�le des 50 ans");
+		motif1.setLibelle("contrôle des 50 ans");
 		motif1.setSpecialite(specialite1);
 		motifs1.add(motif1);
 
@@ -296,9 +303,9 @@ public class MonRdvBootApplicationTests {
 		praticien1.setPrenom("Gregory");
 		praticien1.setPrendCarteVitale(true);
 		praticien1.setValidationAuto(true);
+		praticien1.getSpecialites().add(specialite3);
 		praticien1.getSpecialites().add(specialite4);
 		praticien1.getSpecialites().add(specialite5);
-		praticien1.getSpecialites().add(specialite3);
 		praticien1.getLieux().add(lieu3);
 		praticien1.setLieux(lieux1);
 		praticien1.setModalites(modalites1);
@@ -310,6 +317,11 @@ public class MonRdvBootApplicationTests {
 		praticien2.setPrenom("Bernard");
 		praticien2.setPrendCarteVitale(true);
 		praticien2.setValidationAuto(true);
+		praticien2.setLieux(lieux1);
+		praticien2.getSpecialites().add(specialite1);
+		praticien2.getSpecialites().add(specialite3);
+		praticien2.getSpecialites().add(specialite5);
+		
 ////		praticien2.setSpecialites(specialites1);  //  /!\ le setSpecialite ne fonctionne pas
 
 		praticien2.setLieux(lieux2);
@@ -324,9 +336,14 @@ public class MonRdvBootApplicationTests {
 		praticien3.setSpecialites(specialites3);
 		praticien3.setLieux(lieux3);
 		praticien3.setModalites(modalites1);
+		praticien3.getSpecialites().add(specialite1);
+		praticien3.getSpecialites().add(specialite4);
+		praticien3.getSpecialites().add(specialite5);
 		praticien3.setCreneauDisponibles(creneauxdisponibles1);
 
 		praticiens1.add(praticien1);
+		praticiens1.add(praticien2);
+		praticiens1.add(praticien3);
 
 		praticien1 = repoPraticien.save(praticien1);
 		praticien2 = repoPraticien.save(praticien2);

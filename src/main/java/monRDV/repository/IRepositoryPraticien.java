@@ -1,5 +1,6 @@
 package monRDV.repository;
 
+//import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,6 +20,9 @@ public interface IRepositoryPraticien extends JpaRepository<Praticien, Long>{
 	
 	@Query("select p from Praticien p left join fetch p.specialites s where s.libelle = :libelle")
 	List<Praticien> findBySpecialite(@Param("libelle") String libelle);
+	
+//	@Query("select p from Praticien p left join fetch p.creneaux c where c.debut = :debut")
+//	List<Praticien> findByDate(@Param("debut") Date debut);
 	
 //	@Query("select p from Praticien p left join fetch p.specialites s where s.libelle = :libelle")
 //	List<Praticien> findByVilleSpecialite(@Param("ville") String ville, @Param("libelle") String libelle);

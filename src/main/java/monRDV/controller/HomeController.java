@@ -1,5 +1,6 @@
 package monRDV.controller;
 
+//import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class HomeController {
 	@GetMapping("")
 	public String home(Model model) {
 
-		model.addAttribute("page", "home");
+		model.addAttribute("page", "accueil");
 		model.addAttribute("specialites", repoSpecialite.findAll()); // ETAPE 3
 		model.addAttribute("lieux", repoLieu.findAll());
 
@@ -72,6 +73,18 @@ public class HomeController {
 
 		return "home/homerecherche"; 
 	}
+	
+//	@PostMapping("/listByDate")
+//	public String listByDate(Model model, @RequestParam("debut") Date debut) { 
+//		
+//		List<Praticien> praticiens = repoPraticien.findByDate(debut);
+//		model.addAttribute("debut", debut);
+//		model.addAttribute("page", "accueil");
+//		model.addAttribute("mesPraticiens", praticiens); 
+//
+//		return "home/homerecherche"; 
+//	}
+	
 	
 //	@PostMapping("/listByVilleSpecialite")
 //	public String listByVilleSpecialite(Model model, @RequestParam String ville, @RequestParam String libelle) { 
