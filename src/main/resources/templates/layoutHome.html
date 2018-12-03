@@ -29,13 +29,15 @@
 				<a class="navbar-brand" href="#">ResaDoc</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Accueil</a></li>
+				<li class="active"><a th:href="@{/}">Accueil</a></li>
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a th:href="@{/patient/inscription}"><span
 						class="glyphicon glyphicon-user"></span> Inscription</a></li>
-				<li><a th:href="@{/patient/inscription}"><span
+				<li><a th:href="@{/praticien//inscription}"><span
+						class="glyphicon glyphicon-user"></span> Inscription Praticien</a></li>
+				<li><a th:href="@{/patient/seConnecter}"><span
 						class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
 			</ul>
 		</div>
@@ -52,10 +54,10 @@
 	<footer>
 		<nav class="navbar navbar-default text-center">
 			<div class="container-fluid">
-				</br> <a href="Autres/contact.html">fdsfsdf</a>
+
 				<div class="btn-group">
 					<a
-						href="C:/java/workspace/monRDVBoot/target/classes/templates/Autres/contact.html"><button
+						th:href="@{/autre/contact}"><button
 							type="button" class="btn btn-primary">
 							<span class="glyphicon glyphicon-envelope"></span> Contact
 						</button></a> <a th:href="@{/mention_legales}"><button type="button"

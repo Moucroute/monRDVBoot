@@ -189,6 +189,6 @@ public class PatientController {
 		model.addAttribute("page", "patient");
 		model.addAttribute("utilisateur", new Utilisateur());
 
-		return "home/connexionTest";
+		return "home/connexion";
 	}
 }
