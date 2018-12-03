@@ -21,6 +21,10 @@ public interface IRepositoryPraticien extends JpaRepository<Praticien, Long>{
 	@Query("select p from Praticien p left join fetch p.specialites s where s.libelle = :libelle")
 	List<Praticien> findBySpecialite(@Param("libelle") String libelle);
 	
+	@Query("select p from Praticien p where p.nom = :nom")
+	List<Praticien> findByNom(@Param("nom") String nom);
+	
+		
 //	@Query("select p from Praticien p left join fetch p.creneaux c where c.debut = :debut")
 //	List<Praticien> findByDate(@Param("debut") Date debut);
 	

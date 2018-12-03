@@ -25,13 +25,20 @@
 
 
 
-				<form th:action="@{listByVille}" method="post">
+				<form th:action="@{listByNom}" method="get">
+				
 
 					<div class="form-group">
 						<label for="nom">Nom du praticien:</label> <input type="text"
 							class="form-control" id="nom" placeholder="nom de mon praticien"
-							name="email">
+							name="nom">
 					</div>
+					<button type="submit" class="btn btn-success">Rechercher
+						par nom</button>
+					</form>
+					
+					
+					<form th:action="@{listByVille}" method="post">
 
 					<div class="form-group">
 						<label for="lieu">Entrer une ville:</label> <select

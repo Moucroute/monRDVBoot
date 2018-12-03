@@ -52,6 +52,20 @@ public class HomeController {
 		return "home/homerecherche"; // ETAPE 4
 	}
 	
+	@GetMapping("/listByNom" ) // ETAPE 1
+	public String listByNom(Model model, @RequestParam String nom ) { 
+		if(nom == "") {
+			return "redirect:list";
+		}
+		List<Praticien> praticiens = repoPraticien.findByNom(nom); // ETAPE 2
+		
+		model.addAttribute("page", "accueil");
+		model.addAttribute("mesPraticiens", praticiens); // ETAPE 3
+
+		return "home/homerecherche"; // ETAPE 4
+	}
+	
+	
 	@PostMapping("/listByVille")
 	public String listByVille(Model model, @RequestParam String ville) { 
 		
