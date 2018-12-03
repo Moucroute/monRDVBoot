@@ -4,38 +4,42 @@
 	layout:decorator="layoutPraticien.html">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Praticien</title>
 </head>
 <body>
 	<section layout:fragment="content">
+		<h2>Rdv en attente de validation</h2>
+		<form th:action="@{/praticien/mesRendezVousEnAttente/list}"
+			method="get">
+		
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Jour du rendez-vous</th>
+							<th>Heure du rendez-vous</th>
+							<th>Motif</th>
+							<th>Durée</th>
+							<th>Nom Patient</th>
+							<th>Prenom Patient</th>
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-	<!-- /*/					<th>Debut creneau</th> /*/-->
-	<!-- /*/				<th>Fin creneau</th> /*/-->
-					<th>Motif</th>
-					<th>Durée</th>
-					<th>Nom Patient</th>
-					<th>Prenom Patient</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
 
-
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="rendezVous : ${mesRendezVous}">
-				<td>[[${#dates.format(rendezVousEnAttente.dtRdv, 'dd/MM/yyyy')}]]</td>
-				<td>[[${#dates.format(rendezVousEnAttente.dtRdv, 'HH:mm')}]]</td>
-<!-- /*	/				<td>[[${rendezVous.creneauDisponible.debut}]]</td>/*/-->
-<!-- /*	/				<td>[[${rendezVous.creneauDisponible.fin}]]</td> /*/-->
-					<td>[[${rendezVous.modalite.motif}]]</td>
-					<td>[[${rendezVous.modalite.duree}]]</td>
-					<td>[[${rendezVous.patient.nom}]]</td>
-					<td>[[${rendezVous.patient.prenom}]]</td>
-				</tr>
-			</tbody>
-		</table>
+						<tr th:each="rendezVous : ${mesRendezVous}">
+							<td>[[${#dates.format(rendezVousEnAttente.dtRdv,
+								'dd/MM/yyyy')}]]</td>
+							<td>[[${#dates.format(rendezVousEnAttente.dtRdv, 'HH:mm')}]]</td>
+							<td>[[${rendezVous.modalite.motif}]]</td>
+							<td>[[${rendezVousEnAttente.duree}]]</td>
+							<td>[[${rendezVous.patient.nom}]]</td>
+							<td>[[${rendezVous.patient.prenom}]]</td>
+						</tr>
+					</tbody>
+				</table>
+				</form>
 	</section>
 </body>
 </html>
