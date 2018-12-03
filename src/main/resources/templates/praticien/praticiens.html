@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout.html">
+	layout:decorator="layoutPraticien.html">
 <head>
 <meta charset="UTF-8">
+
 <title>Praticien</title>
 </head>
 <body>
 	<section layout:fragment="content">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Nom Patient</th>
-					<th>Prenom Patient</th>
-					<th>Durée</th>
-					<th>Specialite</th>
-					<th>Motif</th>
-					<th>Validation Auto</th>
-					<th>Specialite</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="matiere : ${mesMatieres}">
-					<td>[[${matiere.nom}]]</td>
-					<td>[[${matiere.duree}]]</td>
-					<td th:text="${matiere.niveau?.label}"></td>
-					<td><a th:href="@{/matiere/edit(nom=${matiere.nom})}"
-						class="btn btn-info btn-xs"><span
-							class="glyphicon glyphicon-pencil"></span></a><a
-						th:href="@{/matiere/delete(nom=${matiere.nom})}"
-						class="btn btn-danger btn-xs"><span
-							class="glyphicon glyphicon-trash"></span></a></td>
-				</tr>
-			</tbody>
-		</table>
-		<a th:href="@{/matiere/add}" class="btn btn-success btn-lg"><span
-			class="glyphicon glyphicon-plus"></span></a>
-	</section>
+		<h2>Rdv en attente de validation</h2>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Jour du rendez-vous</th>
+						<th>Heure du rendez-vous</th>
+						<th>Motif</th>
+						<th>Durée</th>
+						<th>Nom Patient</th>
+						<th>Prenom Patient</th>
+
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="rendezVous : ${mesRendezVousEnAttente}">
+						<td>[[${#dates.format(rendezVousEnAttente.creneau.getDebut,
+							'dd/MM/yyyy')}]]</td>
+						<td>[[${#dates.format(rendezVousEnAttente.creneau.getDebut, 'HH:mm')}]]</td>
+						<td>[[${rendezVous.modalite.motif}]]</td>
+						<td>[[${rendezVousEnAttente.duree}]]</td>
+						<td>[[${rendezVous.patient.nom}]]</td>
+						<td>[[${rendezVous.patient.prenom}]]</td>
+						<td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<br>
+			<button type="submit" class="btn btn-success btn-lg">
+				<span class="glyphicon glyphicon-ok"></span>Confirmer</button>
+			</section>
 </body>
 </html>
+

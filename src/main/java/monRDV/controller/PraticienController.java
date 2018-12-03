@@ -87,12 +87,12 @@ public class PraticienController {
 				
 				rdvEnAttente.setDuree(duree/60000);
 				
-				System.out.println("dtRdv="+rdvEnAttente.getDtRdv());
-				System.out.println("duree="+rdvEnAttente.getDuree());
+			System.out.println("dtRdv="+rdvEnAttente.getDtRdv());
+			System.out.println("duree="+rdvEnAttente.getDuree());
 			}
 		}
 		
-		return "mesrendezVousEnAttente/rendezVous"; 
+		return "praticien/praticiens"; 
 
 	}
 	
