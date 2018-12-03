@@ -14,7 +14,7 @@
 			<div class="col-sm-6" style="background-color: lavender;">
 				<h2>Données de l'utilisateur</h2>
 				<form th:action="@{/patient/save}" method="post">
-					<input type="hidden" name="id" th:value="${utilisateur.id}">
+					<input type="hidden" name="id" th:value="${patient.id}">
 
 					<div class="form-group">
 						<label for="nom">Nom:</label> <input type="text"
@@ -32,14 +32,14 @@
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"
 							class="form-control" id="email" placeholder="Entrer un email"
-							name="email" th:value="${utilisateur?.email}">
+							name="email" th:value="${patient.email}">
 
 					</div>
 					<div class="form-group">
-						<label for="motDePasse">Mot de passe:</label> <input type="password"
-							class="form-control" id="motDePasse"
+						<label for="motDePasse">Mot de passe:</label> <input
+							type="password" class="form-control" id="motDePasse"
 							placeholder="Entrer un mot de passe" name="motDePasse"
-							th:value="${utilisateur.motDePasse}">
+							th:value="${patient.motDePasse}">
 
 
 					</div>
@@ -47,7 +47,7 @@
 						<label for="telephone">Numéro de téléphone:</label> <input
 							type="text" class="form-control" id="telephone"
 							placeholder="Entrer un numéro de téléphone" name="telephone"
-							th:value="${utilisateur.telephone}">
+							th:value="${patient.telephone}">
 
 
 					</div>
@@ -76,7 +76,7 @@
 
 							<td>[[${patient.nom}]]</td>
 							<td>[[${patient.prenom}]]</td>
-							<td>[[${#dates.format(patient.dtNaissance, 'dd/MM/yyyy')}]]</td>
+							<td>[[${#dates.format(patient.dateNaissance, 'dd/MM/yyyy')}]]</td>
 							<td><a
 								th:href="@{/patient/editMesInfosPatient(id=${patient.id})}"
 								class="btn btn-info btn-xs"><span
@@ -84,9 +84,15 @@
 								th:href="@{/patient/delete(id=${patient.id})}"
 								class="btn btn-danger btn-xs"><span
 									class="glyphicon glyphicon-trash"></span></a></td>
+
+
 						</tr>
 					</tbody>
 				</table>
+				<a th:href="@{/patient/add}" class="btn btn-primary btn-block">Ajouter
+					un patient</a>
+
+
 			</div>
 		</div>
 	</section>

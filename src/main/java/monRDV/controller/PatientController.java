@@ -114,17 +114,19 @@ public class PatientController {
 		model.addAttribute("page", "patient");
 		Utilisateur utilisateur = repoUtilisateur.findWithPatients(id);
 		if (utilisateur != null) {
-			model.addAttribute("utilisateur", utilisateur);
 			for (Patient patient : utilisateur.getPatients()) {
 				if (patient.getDefaut()) {
-					model.addAttribute("patient", patient);
+					PatientForm patientForm = new PatientForm(patient.getId(), patient.getNom(), patient.getPrenom());
+					patientForm.setEmail(patient.getUtilisateur().getEmail());
+					patientForm.setMotDePasse(patient.getUtilisateur().getMotDePasse());
+					patientForm.setTelephone(patient.getUtilisateur().getTelephone());
+					model.addAttribute("patient", patientForm);
 				} else {
 					patientsUt.add(patient);
-				}
+				} 
 			}
 		} else {
-			model.addAttribute("utilisateur", new Utilisateur());
-			model.addAttribute("patient", new Patient());
+			model.addAttribute("patient", new PatientForm());
 		}
 
 		model.addAttribute("patientsUt", patientsUt);
@@ -133,7 +135,7 @@ public class PatientController {
 	}
 
 	@PostMapping("/save")
-	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
+	public String save(@ModelAttribute("patient") @Valid PatientForm patientForm, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("page", "patient");
@@ -142,9 +144,29 @@ public class PatientController {
 			return "patient/mesInfosPatient";
 		}
 
-		repoPatient.save(patient);
+		Optional<Patient> optp = repoPatient.findById(patientForm.getId());
+		Optional<Utilisateur> optu = repoUtilisateur.findById(patientForm.getId());
 
-		return "redirect:list";
+
+		if (optp.isPresent() && optu.isPresent()) {
+			Patient patient = optp.get();
+
+			patient.setNom(patientForm.getNom());
+			patient.setPrenom(patientForm.getPrenom());
+
+			repoPatient.save(patient);
+		
+			Utilisateur utilisateur = optu.get();
+		
+			utilisateur.setEmail(patientForm.getEmail());
+			utilisateur.setMotDePasse(patientForm.getMotDePasse());
+			utilisateur.setTelephone(patientForm.getTelephone());
+
+			repoUtilisateur.save(utilisateur);
+
+		}
+
+		return "patient/mesInfosPatient";
 	}
 
 	@GetMapping("/delete")
