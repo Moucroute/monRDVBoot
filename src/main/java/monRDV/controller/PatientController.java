@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.hibernate.hql.internal.ast.tree.IsNotNullLogicOperatorNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,7 +64,8 @@ public class PatientController {
 	}
 
 	@RequestMapping("/saveInscription")
-	public String saveInscription(@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
+	public String saveInscription(
+			@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -88,7 +90,7 @@ public class PatientController {
 			repoPatient.save(nouveauPatient);
 			repoUtilisateur.save(nouvelUtilisateur);
 
-			return "patient/patientRDVAVenir";
+			return "patient/inscriptionPatientValidation";
 		}
 	}
 
@@ -155,15 +157,34 @@ public class PatientController {
 
 		return "forward:list";
 	}
-	
-	@GetMapping("/connexion")
-	public String connexion(Utilisateur utilisateur) {
-		
 
-		return "patient/inscription";
+	@RequestMapping("/connexion")
+	public String connexion(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult result,
+			Model model) {
+		if (repoUtilisateur.findWithEmail(utilisateur.getEmail()) != null) {
+			Utilisateur nouvelUtilisateur = repoUtilisateur.findWithEmail(utilisateur.getEmail());
+			if (nouvelUtilisateur.getMotDePasse().equals(utilisateur.getMotDePasse()) ) {
+				System.out.println(
+						"00000000000000000000000000000000 L'utilisateur est connecté!!! 0000000000000000000000000000000000");
+				return "patient/inscriptionPatientValidation";
+			} else {
+				System.out.println(
+						"00000000000000000000000000000000 Le mot de passe n'est pas correct!! 0000000000000000000000000000000000  " + nouvelUtilisateur.getMotDePasse() + " = " + utilisateur.getMotDePasse());
+
+				return "patient/inscriptionPatientValidation";
+
+			}
+
+		} else
+
+		{
+			System.out.println(
+					"00000000000000000000000000000000 L'utilisateur n'existe pas 0000000000000000000000000000000000");
+			return "patient/inscriptionPatientValidation";
+		}
 	}
-	
-	@GetMapping("/seConnecter")
+
+	@RequestMapping("/seConnecter")
 	public String seConnecter(Model model) {
 		model.addAttribute("page", "patient");
 		model.addAttribute("utilisateur", new Utilisateur());
