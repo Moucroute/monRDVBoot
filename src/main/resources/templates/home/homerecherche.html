@@ -21,9 +21,9 @@
 <!-- 		</div> -->
 
 
-		<p th:if="${mesPraticiens}==null">Aucun praticien ne correspond aux critères recherchés.</p>
+		<p th:if="${#lists.isEmpty(mesPraticiens)}">Aucun praticien ne correspond aux critères recherchés.</p>
 
-		<div class="row" th:unless="${mesPraticiens}==null">
+		<div class="row" th:unless="${#lists.isEmpty(mesPraticiens)}">
 			<div class="col-sm-6 col-md-4">
 				<div th:each="praticien : ${mesPraticiens}" class="thumbnail">
 					<div class="caption">
