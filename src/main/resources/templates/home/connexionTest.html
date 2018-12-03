@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layoutPatient.html">
+<head>
+<meta charset="UTF-8">
+<title>Connexion</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+			<h1>Connectez-vous</h1>
+				<form th:action="@{/patient/connexion}" method="post">
+					<div class="form-group">
+						<label for="email">Login:</label> <input type="text"
+							class="form-control" id="email" placeholder="Entrer votre email de connexion"
+							name="email" th:value="${utilisateur.email}">
+					</div>
+					<div class="form-group">
+						<label for="motDePasse">Mot de passe:</label> <input type="password"
+							class="form-control" id="prenom" placeholder="Entrer votre mot de passe"
+							name="motDePasse" th:value="${utilisateur.motDePasse}">
+					</div>
+					<button type="submit" class="btn btn-success btn-lg">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</form>
+				<p> <a href="patient/inscriptionPatient">S'inscrire</a>
+				<a href="">Mot de passe oublié? </a></p>
+			</div>
+			<div class="col-lg-3"></div>
+		</div>
+	</section>
+</body>
+
+</html>

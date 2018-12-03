@@ -15,6 +15,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.Size;
+
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "patient")
@@ -29,11 +33,12 @@ public class Patient {
 	@Column(name = "defaut")
 	private Boolean defaut;
 	@Column(name = "nom")
+	@Size(min=3, max=100, message="Le nom est obligatoire (entre 3 et 100 caractères)")
 	private String nom;
 	@Column(name = "prenom")
 	private String prenom;
 
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date_naissance")
 	private Date dateNaissance;
 

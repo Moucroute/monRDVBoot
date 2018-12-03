@@ -62,30 +62,34 @@ public class PatientController {
 		return "patient/inscriptionPatient";
 	}
 
-	@RequestMapping("/save")
-	public String save(@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
+	@RequestMapping("/saveInscription")
+	public String saveInscription(@ModelAttribute("inscriptionFormPatient") @Valid InscriptionFormPatient inscriptionFormPatient,
 			BindingResult result, Model model) {
 
-		model.addAttribute("page", "patient");
+		if (result.hasErrors()) {
+			model.addAttribute("inscriptionFormPatient", inscriptionFormPatient);
+			model.addAttribute("page", "patient");
+			return "patient/inscriptionPatient";
+		} else {
+			model.addAttribute("page", "patient");
+			Patient nouveauPatient = new Patient();
+			nouveauPatient.setNom(inscriptionFormPatient.getNom());
+			nouveauPatient.setPrenom(inscriptionFormPatient.getPrenom());
+			nouveauPatient.setDateCreation(new Date());
+			nouveauPatient.setDefaut(true);
+			nouveauPatient.setDateNaissance(inscriptionFormPatient.getDtNaissance());
+			Utilisateur nouvelUtilisateur = new Utilisateur();
+			nouvelUtilisateur.setTelephone(inscriptionFormPatient.getTelephone());
+			nouvelUtilisateur.setProfil(Profil.Patient);
+			nouvelUtilisateur.setDateCreation(new Date());
+			nouvelUtilisateur.setEmail(inscriptionFormPatient.getEmail());
+			nouvelUtilisateur.setMotDePasse(inscriptionFormPatient.getMotDePasse());
 
-		Patient nouveauPatient = new Patient();
-		nouveauPatient.setNom(inscriptionFormPatient.getNom());
-		nouveauPatient.setPrenom(inscriptionFormPatient.getPrenom());
-		nouveauPatient.setDateCreation(new Date());
-		nouveauPatient.setDefaut(true);
-		
-		Utilisateur nouvelUtilisateur = new Utilisateur();
-		nouvelUtilisateur.setTelephone(inscriptionFormPatient.getTelephone());
-		nouvelUtilisateur.setProfil(Profil.Patient);
-		nouvelUtilisateur.setDateCreation(new Date());
-		nouvelUtilisateur.setEmail(inscriptionFormPatient.getEmail());
-		nouvelUtilisateur.setMotDePasse(inscriptionFormPatient.getMotDePasse());
-		
-		repoPatient.save(nouveauPatient);
-		System.out.println("mon test utilisateur" + nouvelUtilisateur.getEmail());
-		repoUtilisateur.save(nouvelUtilisateur);
+			repoPatient.save(nouveauPatient);
+			repoUtilisateur.save(nouvelUtilisateur);
 
-		return "patient/inscriptionPatient";
+			return "patient/patientRDVAVenir";
+		}
 	}
 
 //	@GetMapping("/edit")
@@ -125,21 +129,21 @@ public class PatientController {
 
 		return "patient/mesInfosPatient";
 	}
-//
-//	@PostMapping("/save")
-//	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
-//
-//		if (result.hasErrors()) {
-//			model.addAttribute("page", "patient");
-//			model.addAttribute("patients", repoPatient.findAll());
-//
-//			return "patient/mesInfosPatient";
-//		}
-//
-//		repoPatient.save(patient);
-//
-//		return "redirect:list";
-//	}
+
+	@PostMapping("/save")
+	public String save(@ModelAttribute("patient") @Valid Patient patient, BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			model.addAttribute("page", "patient");
+			model.addAttribute("patients", repoPatient.findAll());
+
+			return "patient/mesInfosPatient";
+		}
+
+		repoPatient.save(patient);
+
+		return "redirect:list";
+	}
 
 	@GetMapping("/delete")
 	public String delete(@RequestParam Long id) {
@@ -150,5 +154,20 @@ public class PatientController {
 		}
 
 		return "forward:list";
+	}
+	
+	@GetMapping("/connexion")
+	public String connexion(Utilisateur utilisateur) {
+		
+
+		return "patient/inscription";
+	}
+	
+	@GetMapping("/seConnecter")
+	public String seConnecter(Model model) {
+		model.addAttribute("page", "patient");
+		model.addAttribute("utilisateur", new Utilisateur());
+
+		return "home/connexionTest";
 	}
 }

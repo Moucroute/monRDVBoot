@@ -2,10 +2,16 @@ package monRDV.model;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class InscriptionFormPatient {
 
 	private String nom;
 	private String prenom;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dtNaissance;
 	private String telephone;
 	private String motDePasse;
