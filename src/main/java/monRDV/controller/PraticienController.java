@@ -6,11 +6,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,6 +26,7 @@ import monRDV.repository.IRepositoryCreneauDisponible;
 import monRDV.repository.IRepositoryModalite;
 import monRDV.repository.IRepositoryPatient;
 import monRDV.repository.IRepositoryRendezVous;
+
 
 @Controller
 @RequestMapping("/mesRendezVousEnAttente")
@@ -44,14 +50,15 @@ public class PraticienController {
 	}
 
 	@GetMapping({ "/list" })
-	public String list(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Long id, Model model) {
+	public String list(@RequestParam Long idPraticien, Model model) {
 
 		List<RendezVousEnAttente> rdvEnAttentes = new ArrayList<>();
 
-		List<RendezVous> rendezVouss = repoRendezVous.findAllWithCreneaux();
+		List<RendezVous> rendezVouss = repoRendezVous.findAllWithCreneauxByPraticien(idPraticien);
 		model.addAttribute("page", "mesrendezVousEnAttente");
 
 		for (RendezVous rdv : rendezVouss) {
+			System.out.println(rdv.getId());
 			if (!rdv.getStatut()) {
 				RendezVousEnAttente rdvEnAttente = new RendezVousEnAttente();
 				rdvEnAttente.setNom(rdv.getPatient().getNom());
@@ -74,18 +81,20 @@ public class PraticienController {
 
 				}
 				
-				System.out.println("debut="+debut);
-				System.out.println("fin="+fin);
+				rdvEnAttente.setDtRdv(debut);
+				
+				long duree = fin.getTime() - debut.getTime();
+				
+				rdvEnAttente.setDuree(duree/60000);
+				
+				System.out.println("dtRdv="+rdvEnAttente.getDtRdv());
+				System.out.println("duree="+rdvEnAttente.getDuree());
 			}
 		}
-
-		Optional<RendezVous> opt = repoRendezVous.findById(id);
-		if (opt.isPresent()) {
-
-			model.addAttribute("mesRendezvous", rendezVouss);
-		}
-
+		
 		return "mesrendezVousEnAttente/rendezVous"; 
 
 	}
-}
+	
+		}
+

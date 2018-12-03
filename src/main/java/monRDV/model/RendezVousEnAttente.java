@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class RendezVousEnAttente {
 	private Date dtRdv;
-	private int duree;
+	private long duree;
 	private String motif;
 	private String nom;
 	private String prenom;
@@ -13,7 +13,7 @@ public class RendezVousEnAttente {
 		super();
 	}
 
-	public RendezVousEnAttente(Date dtRdv, int duree, String motif, String nom, String prenom) {
+	public RendezVousEnAttente(Date dtRdv, long duree, String motif, String nom, String prenom) {
 		super();
 		this.dtRdv = dtRdv;
 		this.duree = duree;
@@ -30,11 +30,11 @@ public class RendezVousEnAttente {
 		this.dtRdv = dtRdv;
 	}
 
-	public int getDuree() {
+	public long getDuree() {
 		return duree;
 	}
 
-	public void setDuree(int duree) {
+	public void setDuree(long duree) {
 		this.duree = duree;
 	}
 
