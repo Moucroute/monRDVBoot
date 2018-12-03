@@ -8,6 +8,7 @@
 </head>
 <body>
 	<section layout:fragment="content">
+	
 <!-- 		<div class="btn-group"> -->
 <!-- 			<button type="button" class="btn btn-default dropdown-toggle" -->
 <!-- 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
@@ -32,7 +33,7 @@
 							[[${praticien.prenom}]]
 						</h3>
 						<ul th:each="specialite : ${praticien.specialites}">
-							<li>>[[${specialite.libelle}]]</li>
+							<li>[[${specialite.libelle}]]</li>
 						</ul>
 						<p>Prochain rendez-vous le</p>
 						<p th:if="${praticien.prendCarteVitale}">Prends la carte
