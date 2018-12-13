@@ -8,19 +8,57 @@
 </head>
 <body>
 	<section layout:fragment="content">
-	
+
 		<div class="row">
 
 			<div class="col-lg-1"></div>
 
 			<div class="col-lg-10">
+
 				<h2>Edition des motifs de consultation</h2>
+				<br>
+				<div>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Motifs de consultation</th>
+								<th>Prix</th>
+								<th>Délai d'annulation</th>
+								<th>Dépassement honoraires</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="modalite : ${mesModalites}">
+								<td>[[${modalite.motif.libelle}]]</td>
+								<td>[[${modalite.prix}]]</td>
+								<td>[[${modalite.delaiAnnulation}]] jours</td>
+								<td><span th:if="${modalite.depassementHonoraires} == true"
+									th:text="Oui"></span><span
+									th:if="${modalite.depassementHonoraires} == false"
+									th:text="Non"></span></td>
+								<td><a th:href="@{/praticien/editMotif(utilisateurId=${utilisateurId},motif=${modalite.motif})}"
+									class="btn btn-info btn-xs"><span
+										class="glyphicon glyphicon-pencil"></span></a><a
+									th:href="@{/praticien/deleteMotif(motif=${modalite.motif})}"
+									class="btn btn-danger btn-xs"><span
+										class="glyphicon glyphicon-trash"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+					<br> <a
+						th:href="@{/praticien/editMesSpecialites(utilisateurId=${utilisateurId})}"
+						class="btn btn-primary" role="button">Retour</a>
+
+				</div>
+				<br>
 			</div>
 
 			<div class="col-lg-1"></div>
-			
+
 		</div>
-		
+
 	</section>
 </body>
 </html>
